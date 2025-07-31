@@ -1,4 +1,4 @@
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/introduction";
 import { DialogueOverlay } from "~/components/Dialogue/Dialogue";
 
 export function meta({ }: Route.MetaArgs) {
