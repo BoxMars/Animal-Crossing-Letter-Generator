@@ -13,6 +13,7 @@ export enum CardType {
   FathersDay = "fathers-day",
   FullBloom = "full-bloom",
   Gears = "gears",
+  Gem = "gem",
   Goldfish = "goldfish",
   Graffiti = "graffiti",
   Hibiscus = "hibiscus",
@@ -31,10 +32,10 @@ export default function Card({ type = CardType.Airmail }: { type?: CardType }) {
   return (
     <div className={`card ${type}-card`} key={type}>
       <div className="card-start" mutable-parsed="true">
-        Dear Friend,
+        What's up, shmoopy?
       </div>
       <div className="card-message" mutable-parsed="true">
-        This is the "{type}" stationary pattern
+        The umbrella I THOUGHT I lost?
       </div>
       <div className="card-signature" mutable-parsed="true">
         Idrees Hassan
