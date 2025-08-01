@@ -6,7 +6,9 @@
 }
 
 .mailbox {
-	max-width: 1200px;
+	max-width: 1600px;
+	margin-left: 5%;
+	margin-right: 5%;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: flex-start;
