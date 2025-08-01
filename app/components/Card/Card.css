@@ -30,7 +30,7 @@
 	transition-duration: 0.15s;
 }
 
-.card-date {
+.card-start {
 }
 
 .card-message {
@@ -103,7 +103,7 @@
 }
 
 .fathers-day-card {
-	background-image: url("./backgrounds/Father\'s_Day_Card_NH.png");
+	background-image: url("./backgrounds/Fathers_Day_Card_NH.png");
 	text-shadow: -2px 0 #DDFEF3, 0 2px #DDFEF3, 2px 0 #DDFEF3, 0 -2px #DDFEF3;
 }
 
@@ -137,7 +137,7 @@
 }
 
 .mothers-day-card {
-	background-image: url("./backgrounds/Mother\'s_Day_Card_NH.png");
+	background-image: url("./backgrounds/Mothers_Day_Card_NH.png");
 	text-shadow: -2px 0 #FEEFDF, 0 2px #FEEFDF, 2px 0 #FEEFDF, 0 -2px #FEEFDF;
 }
 
