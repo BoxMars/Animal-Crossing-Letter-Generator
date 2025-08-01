@@ -1,9 +1,9 @@
 import "./Mailbox.css";
-import { CardType } from "~/components/Card/Card";
+import { CardName } from "~/components/Card/Card";
 import Card from "~/components/Card/Card";
 
 export default function Mailbox() {
-  let cards = Object.values(CardType).map((type) => (
+  let cards = Object.values(CardName).map((type) => (
     <Card type={type} key={type} />
   ));
   return (
