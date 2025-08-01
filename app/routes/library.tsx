@@ -1,4 +1,5 @@
 import type { Route } from "./+types/library";
+import Mailbox from "~/components/Mailbox/Mailbox";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -8,8 +9,6 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function Library() {
   return (
-	<div>
-	  Hello, world!
-	</div>
+	<Mailbox />
   );
 }

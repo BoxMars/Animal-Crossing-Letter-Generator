@@ -7,11 +7,11 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
         <div className="dialogue-blobs">
           <div className="dialogue-blob-top"></div>
           <div className="dialogue-blob-bottom"></div>
-          <div className="dialogue-text">{ message }</div>
+          <div className="dialogue-text">{message}</div>
         </div>
         <div className="dialogue-character-wrap">
           <div className="dialogue-character">
-            <slot name="character">{ name }</slot>
+            <slot name="character">{name}</slot>
           </div>
         </div>
         <svg className="arrow" width="45" height="25" viewBox="0 0 45 25" fill="none" xmlns="http://www.w3.org/2000/svg">

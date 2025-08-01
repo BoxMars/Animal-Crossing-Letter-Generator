@@ -1,0 +1,162 @@
+.card:nth-child(even) {
+	transform: rotate(-2deg);
+
+}
+
+.card:nth-child(odd) {
+	transform: rotate(2deg);
+
+}
+
+.card {
+	width: 350px;
+	height: 222px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	box-shadow: 0px 10px 12px rgba(0,0,0,0.2);
+	margin: 15px;
+	transition-duration: 0.15s;
+	border-radius: 5px;
+	box-sizing: border-box;
+	padding: 20px;
+	font-family: "Varela Round", sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.card:hover {
+	transform: scale(1.15);
+	box-shadow: 0px 20px 20px rgba(0,0,0,0.2);
+	transition-duration: 0.15s;
+}
+
+.card-date {
+}
+
+.card-message {
+	width: 100%;
+	flex-grow: 1;
+	margin-top: 8px;
+	padding-left: 30px;
+	padding-right: 30px;
+	overflow-y: auto;
+	box-sizing: border-box;
+	white-space: pre-wrap;
+}
+
+.card-signature {
+	text-align: right;
+	margin-top: 8px;
+}
+
+.airmail-card {
+	background-image: url("./backgrounds/Airmail_Card_NH.png");
+}
+
+.beach-card {
+	background-image: url("./backgrounds/Summer_2_Card_NH.png");
+}
+
+.birthday-cake-card {
+	background-image: url("./backgrounds/Birthday-Cake_Card_NH.png");
+}
+
+.blue-sky-card {
+	background-image: url("./backgrounds/Blue-Sky_Card_NH.png");
+	color: white;
+}
+
+.bunny-day-card {
+	background-image: url("./backgrounds/Bunny_Day_Card_NH.png");
+}
+
+.cherry-blossoms-card {
+	background-image: url("./backgrounds/Cherry-Blossoms_Card_NH.png");
+	color: rgb(199, 94, 112);
+}
+
+.clouds-card {
+	background-image: url("./backgrounds/Summer_1_Card_NH.png");
+}
+
+.common-card {
+	background-image: url("./backgrounds/Common_Card_NH.png");
+}
+
+.dandelion-card {
+	background-image: url("./backgrounds/Dandelion_Card_NH.png");
+	border-radius: 28px;
+}
+
+.dragonflies-card {
+	background-image: url("./backgrounds/Red-Dragonflies_Card_NH.png");
+	color: rgb(185, 83, 14);
+}
+
+.elegant-roses-card {
+	background-image: url("./backgrounds/Elegant-Roses_Card_NH.png");
+	color: pink;
+}
+
+.fantasy-stars-card {
+	background-image: url("./backgrounds/Fantasy-Stars_Card_NH.png");
+}
+
+.fathers-day-card {
+	background-image: url("./backgrounds/Father\'s_Day_Card_NH.png");
+	text-shadow: -2px 0 #DDFEF3, 0 2px #DDFEF3, 2px 0 #DDFEF3, 0 -2px #DDFEF3;
+}
+
+.fireworks-card {
+	background-image: url("./backgrounds/New_Year_1_Card_NH.png");
+	color: white;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.full-bloom-card {
+	background-image: url("./backgrounds/Full-Bloom_Card_NH.png");
+	border-radius: 28px;
+}
+
+.gears-card {
+	background-image: url("./backgrounds/Gears_Card_NH.png");
+	color: silver;
+}
+
+.goldfish-card {
+	background-image: url("./backgrounds/Goldfish_Card_NH.png");
+}
+
+.graffiti-card {
+	background-image: url("./backgrounds/Graffiti_Card_NH.png");
+	color: rgb(222, 214, 255);
+}
+
+.hibiscus-card {
+	background-image: url("./backgrounds/Hibiscus_Card_NH.png");
+}
+
+.mothers-day-card {
+	background-image: url("./backgrounds/Mother\'s_Day_Card_NH.png");
+	text-shadow: -2px 0 #FEEFDF, 0 2px #FEEFDF, 2px 0 #FEEFDF, 0 -2px #FEEFDF;
+}
+
+.shooting-stars-card {
+	background-image: url("./backgrounds/Shooting-Stars_Card_NH.png");
+	color: white;
+}
+
+.so-many-hearts-card {
+	background-image: url("./backgrounds/So-Many-Hearts_Card_NH.png");
+	color: rgb(92, 0, 57);
+}
+
+.stationary-goods-card {
+	background-image: url("./backgrounds/Stationery-Goods_Card_NH.png");
+}
+
+.velvety-card {
+	background-image: url("./backgrounds/Velvety_Card_NH.png");
+	border-radius: 10px;
+	color: gold;
+}
