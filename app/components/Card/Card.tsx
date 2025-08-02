@@ -43,7 +43,6 @@ export enum CardName {
   FullBloom = "Full Bloom",
   Hibiscus = "Hibiscus",
   MothersDay = "Mother's Day",
-  Dragonflies = "Dragonflies",
   FluffyClouds = "Fluffy-Clouds",
   Beach = "Beach",
 }
