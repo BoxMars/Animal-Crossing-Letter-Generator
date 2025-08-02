@@ -48,6 +48,7 @@ export enum CardName {
 }
 
 export const DEFAULT_STATIONARY = [
+  CardName.MothersDay,
   CardName.Airmail,
   CardName.HappyClovers,
   CardName.BlueSky,
@@ -103,9 +104,9 @@ function getCssClass(type: CardName): string {
   return `${type.toLowerCase().replaceAll(" ", "-").replaceAll("'", "")}-card`;
 }
 
-export default function Card({ type = CardName.Airmail }: { type?: CardName }) {
+export default function Card({ type = CardName.Airmail, onClick }: { type?: CardName, onClick?: () => void }) {
   return (
-    <div className={`card ${getCssClass(type)}`} key={type}>
+    <div className={`card ${getCssClass(type)}`} key={type} onClick={onClick}>
       <div className="card-start">
         Dear Idrees,
       </div>
