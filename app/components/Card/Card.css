@@ -92,11 +92,13 @@
 	margin: 17% 15.5%;
 	flex-grow: 1;
 	box-sizing: border-box;
-	white-space: pre-wrap;
 }
 
 .card-message {
 	color: var(--card-message-color);
+	max-width: 100%;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
 .card-signature {
