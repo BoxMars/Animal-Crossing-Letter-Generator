@@ -3,12 +3,12 @@
 	src: url("fonts/FOT-Seurat Pro B.otf") format("opentype");
 }
 
-.card:nth-child(even) {
+.card-tilt:nth-child(even) {
 	transform: rotate(-2deg);
 
 }
 
-.card:nth-child(odd) {
+.card-tilt:nth-child(odd) {
 	transform: rotate(2deg);
 
 }
