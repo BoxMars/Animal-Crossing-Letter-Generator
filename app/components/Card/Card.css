@@ -21,6 +21,7 @@
 	--card-message-color: #010101;
 	--card-signature-color: #010101;
 	--card-message-background: transparent;
+	--card-background-padding: calc(16px * var(--card-scale));
 }
 
 .card {
@@ -49,6 +50,30 @@
 	z-index: 2;
 }
 
+.card-start,
+.card-message,
+.card-signature {
+	background: var(--card-message-background);
+	padding-left: var(--card-background-padding);
+	padding-right: var(--card-background-padding);
+	border-radius: 0.5lh;
+	box-shadow:
+		/* First shadow necessary for Firefox rendering issues */
+		inset 0 0 0 2px var(--card-message-background),
+		0px 0px calc(5px * var(--card-scale)) calc(10px * var(--card-scale)) var(--card-message-background);
+}
+
+.card-start {
+	margin-left: calc(var(--card-background-padding) * -1);
+	line-height: 1.2;
+}
+
+
+.card-signature {
+	margin-right: calc(var(--card-background-padding) * -1);
+	line-height: 1.2;
+}
+
 .card-start {
 	position: absolute;
 	top: var(--card-vertical-padding);
@@ -56,14 +81,21 @@
 	color: var(--card-start-color);
 }
 
-.card-message {
+.card-message-container {
 	position: absolute;
-	width: 100%;
-	padding: 17% 15.5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 66%;
+	height: 6lh;
+	margin: 17% 15.5%;
 	flex-grow: 1;
-	overflow-y: auto;
 	box-sizing: border-box;
 	white-space: pre-wrap;
+}
+
+.card-message {
 	color: var(--card-message-color);
 }
 
@@ -111,6 +143,7 @@
 	--card-start-color: #da8528;
 	--card-message-color: #64553b;
 	--card-signature-color: var(--card-start-color);
+	--card-message-background: #fcfcf0;
 }
 
 .bandage-card {
@@ -220,7 +253,6 @@
 
 .fathers-day-card {
 	background-image: url("./backgrounds/Fathers_Day_Card_NH.png");
-	text-shadow: -2px 0 #DDFEF3, 0 2px #DDFEF3, 2px 0 #DDFEF3, 0 -2px #DDFEF3;
 }
 
 .fireworks-card {
@@ -228,6 +260,7 @@
 	--card-start-color: #ffbaf4;
 	--card-message-color: #c9a3ff;
 	--card-signature-color: #92a7f7;
+	--card-message-background: #362a98;
 }
 
 .flower-bouquet-card {
@@ -253,6 +286,7 @@
 	--card-start-color: #2d7f86;
 	--card-message-color: #398470;
 	--card-signature-color: var(--card-start-color);
+	--card-message-background: #b9dec7;
 }
 
 .goldfish-card {
@@ -299,7 +333,6 @@
 
 .mothers-day-card {
 	background-image: url("./backgrounds/Mothers_Day_Card_NH.png");
-	text-shadow: -2px 0 #FEEFDF, 0 2px #FEEFDF, 2px 0 #FEEFDF, 0 -2px #FEEFDF;
 }
 
 .red-dragonflies-card {

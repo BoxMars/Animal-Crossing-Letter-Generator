@@ -57,8 +57,10 @@ export default function Card({ type = CardName.Airmail }: { type?: CardName }) {
       <div className="card-start">
         Dear future Idrees,
       </div>
-      <div className="card-message" contentEditable={true}>
-        Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!
+      <div className="card-message-container">
+        <div className="card-message" contentEditable={true}>
+          Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!
+        </div>
       </div>
       <div className="card-signature">
         From Nintendo
