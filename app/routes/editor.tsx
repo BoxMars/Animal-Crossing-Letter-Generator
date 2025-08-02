@@ -1,6 +1,6 @@
 import type { Route } from "./+types/editor";
 import { useSearchParams } from "react-router";
-import Card from "~/components/Card/Card";
+import Editor from "~/components/Editor/Editor";
 import { CardName } from "~/components/Card/Card";
 
 export function meta({ }: Route.MetaArgs) {
@@ -9,7 +9,7 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
-export default function Editor() {
+export default function EditorPage() {
   const [params] = useSearchParams();
   let cardType = CardName.Airmail;
   if (params.has("card")) {
@@ -21,8 +21,6 @@ export default function Editor() {
     }
   }
   return (
-    <div>
-      <Card type={cardType} />
-    </div>
+    <Editor cardType={cardType} />
   );
 }
