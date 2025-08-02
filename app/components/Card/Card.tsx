@@ -103,18 +103,22 @@ function getCssClass(type: CardName): string {
   return `${type.toLowerCase().replaceAll(" ", "-").replaceAll("'", "")}-card`;
 }
 
-export default function Card({ type = CardName.Airmail, tilt = false, onClick }: { type?: CardName, tilt?: boolean, onClick?: () => void }) {
+export default function Card({ type = CardName.Airmail, tilt = false, editable = false, zoomable = true, onClick }: { type?: CardName, tilt?: boolean, editable?: boolean, zoomable?: boolean, onClick?: () => void }) {
   return (
-    <div className={`card ${getCssClass(type)} ${tilt ? "card-tilt" : ""}`} key={type} onClick={onClick}>
-      <div className="card-start">
+    <div
+      className={`card ${getCssClass(type)} ${tilt ? "card-tilt" : ""} ${zoomable ? "card-zoomable" : ""}`}
+      key={type}
+      onClick={onClick}
+    >
+      <div className="card-start" contentEditable={editable}>
         Dear Idrees,
       </div>
       <div className="card-message-container">
-        <div className="card-message">
+        <div className="card-message" contentEditable={editable}>
           Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!
         </div>
       </div>
-      <div className="card-signature">
+      <div className="card-signature" contentEditable={editable}>
         From Nintendo
       </div>
       <div className="card-label">
