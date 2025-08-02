@@ -322,6 +322,7 @@
 	--card-start-color: #d90b7c;
 	--card-message-color: #188da0;
 	--card-signature-color: var(--card-start-color);
+	--card-message-background: #f3f1f2;
 }
 
 .lovely-hearts-card {
