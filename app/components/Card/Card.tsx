@@ -103,7 +103,25 @@ function getCssClass(type: CardName): string {
   return `${type.toLowerCase().replaceAll(" ", "-").replaceAll("'", "")}-card`;
 }
 
-export default function Card({ type = CardName.Airmail, tilt = false, editable = false, zoomable = true, onClick }: { type?: CardName, tilt?: boolean, editable?: boolean, zoomable?: boolean, onClick?: () => void }) {
+export default function Card({
+  type = CardName.Airmail,
+  tilt = false,
+  editable = false,
+  zoomable = true,
+  onClick,
+  startText = "Dear Villager,",
+  messageText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
+  signatureText = "From Tom Nook"
+}: {
+  type?: CardName,
+  tilt?: boolean,
+  editable?: boolean,
+  zoomable?: boolean,
+  onClick?: () => void,
+  startText?: string,
+  messageText?: string,
+  signatureText?: string
+}) {
   return (
     <div
       className={`card ${getCssClass(type)} ${tilt ? "card-tilt" : ""} ${zoomable ? "card-zoomable" : ""}`}
@@ -111,15 +129,15 @@ export default function Card({ type = CardName.Airmail, tilt = false, editable =
       onClick={onClick}
     >
       <div className="card-start" contentEditable={editable}>
-        Dear Idrees,
+        {startText}
       </div>
       <div className="card-message-container">
         <div className="card-message" contentEditable={editable}>
-          Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!
+          {messageText}
         </div>
       </div>
       <div className="card-signature" contentEditable={editable}>
-        From Nintendo
+        {signatureText}
       </div>
       {zoomable ? (
         <div className="card-label">

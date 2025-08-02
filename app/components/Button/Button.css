@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Seurat Pro B";
+	src: url("fonts/FOT-Seurat Pro B.otf") format("opentype");
+}
+
 .blob-button {
     background: #00c7ba;
     color: white;
@@ -11,7 +16,7 @@
 	font-size: 22px;
     cursor: pointer;
     outline: inherit;
-	width: 190px;
+	min-width: 190px;
 	transition: transform 0.05s ease-in-out;
 }
 

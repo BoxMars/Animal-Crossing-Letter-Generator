@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Seurat Pro B";
+	src: url("fonts/FOT-Seurat Pro B.otf") format("opentype");
+}
+
 .card-tilt:nth-child(even) {
 	transform: rotate(-2deg);
 

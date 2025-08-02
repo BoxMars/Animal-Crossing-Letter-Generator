@@ -3,40 +3,88 @@ import Card from "~/components/Card/Card";
 import { CardName } from "~/components/Card/Card";
 import Button from "~/components/Button/Button";
 import html2canvas from "html2canvas";
+import { useNavigate } from "react-router";
+import LZString from "lz-string";
 
-export default function Editor({ cardType }: { cardType: CardName }) {
+function encode(text: string) {
+  return LZString.compressToEncodedURIComponent(text);
+}
+
+export function decode(encodedText: string) {
+  const decoded = LZString.decompressFromEncodedURIComponent(encodedText);
+  return decoded;
+}
+
+function saveImage(cardElement: HTMLElement) {
+  const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
+  html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
+    // Copy to clipboard
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]).then(() => {
+          console.log("Image copied to clipboard");
+        }).catch(err => {
+          console.error("Failed to copy image to clipboard", err);
+        });
+      }
+    });
+    // Download the image
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = `animal-crossing-card.png`;
+    link.click();
+  });
+}
+
+function copyLink(cardType: CardName, startText: string, messageText: string, signatureText: string) {
+  const params = new URLSearchParams({
+    card: cardType,
+    start: encode(startText),
+    message: encode(messageText),
+    signature: encode(signatureText)
+  });
+  const url = `${window.location.origin}/share?${params.toString()}`;
+  // Copy to clipboard
+  navigator.clipboard.writeText(url).then(() => {
+    console.log("Link copied to clipboard");
+  }).catch(err => {
+    console.error("Failed to copy link to clipboard", err);
+  });
+}
+
+export default function Editor({ cardType, shareMode: shareMode = false, startText, messageText, signatureText }: { cardType: CardName, shareMode?: boolean, startText?: string, messageText?: string, signatureText?: string }) {
+  const navigate = useNavigate();
   return (
     <div className="editor">
-      <Card type={cardType} editable zoomable={false} />
+      <Card type={cardType} editable={!shareMode} zoomable={false} startText={startText} messageText={messageText} signatureText={signatureText} />
       <div className="editor-controls">
         <Button label="Save Image" onClick={
           () => {
             const cardElement = document.querySelector(".card");
             if (cardElement instanceof HTMLElement) {
-              const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
-              html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
-                // Copy to clipboard
-                canvas.toBlob((blob) => {
-                  if (blob) {
-                    const item = new ClipboardItem({ "image/png": blob });
-                    navigator.clipboard.write([item]).then(() => {
-                      console.log("Image copied to clipboard");
-                    }).catch(err => {
-                      console.error("Failed to copy image to clipboard", err);
-                    });
-                  }
-                });
-                // Download the image
-                const link = document.createElement("a");
-                link.href = canvas.toDataURL("image/png");
-                link.download = `${cardType}.png`;
-                link.click();
-              });
+              saveImage(cardElement);
             }
           }
         } />
-        <Button label="Copy Link" />
-        {/* <Button label="Send Away" /> */}
+        <Button label="Copy Link" onClick={() => {
+          const cardElement = document.querySelector(".card");
+          if (cardElement instanceof HTMLElement) {
+            // Get start text, message text, and signature text
+            const startText = cardElement.querySelector(".card-start")?.textContent ?? "";
+            const messageText = cardElement.querySelector(".card-message")?.textContent ?? "";
+            const signatureText = cardElement.querySelector(".card-signature")?.textContent ?? "";
+            copyLink(cardType, startText, messageText, signatureText);
+          }
+        }} />
+        {shareMode && (
+          <Button label="Make Your Own" onClick={() => {
+            navigate("/");
+          }} />
+        )}
+        {!shareMode && (
+          <Button label="Share w/ the World" />
+        )}
       </div>
     </div>
   );
