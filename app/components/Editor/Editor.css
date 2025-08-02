@@ -5,5 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  --card-scale: 0.5;
+  --card-scale: 0.6;
+}
+
+.editor-controls {
+	margin-top: 10px;
+	display: flex;
+	width: 600px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
 }

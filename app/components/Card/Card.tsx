@@ -121,9 +121,11 @@ export default function Card({ type = CardName.Airmail, tilt = false, editable =
       <div className="card-signature" contentEditable={editable}>
         From Nintendo
       </div>
-      <div className="card-label">
-        {type}
-      </div>
+      {zoomable ? (
+        <div className="card-label">
+          {type}
+        </div>
+      ) : null}
     </div>
   );
 }

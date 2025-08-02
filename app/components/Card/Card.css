@@ -1,8 +1,3 @@
-@font-face {
-	font-family: "Seurat Pro B";
-	src: url("fonts/FOT-Seurat Pro B.otf") format("opentype");
-}
-
 .card-tilt:nth-child(even) {
 	transform: rotate(-2deg);
 
@@ -31,7 +26,6 @@
 	background-size: contain;
 	filter: drop-shadow(0 10px 6px rgba(0, 0, 0, 0.15));
 	margin: 15px;
-	transition-duration: 0.15s;
 	border-radius: 5px;
 	box-sizing: border-box;
 	font-family: "Seurat Pro B", "Varela Round", sans-serif;
@@ -41,6 +35,10 @@
 	display: flex;
 	flex-direction: column;
 	will-change: transform;
+}
+
+.card-zoomable {
+	transition-duration: 0.15s;
 }
 
 .card-zoomable:hover {

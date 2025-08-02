@@ -1,0 +1,21 @@
+.blob-button {
+    background: #00c7ba;
+    color: white;
+    border: none;
+    padding: 0;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 1px;
+	border-radius: 50px;
+    font-family: "Seurat Pro B", sans-serif;
+	font-size: 22px;
+    cursor: pointer;
+    outline: inherit;
+	width: 190px;
+	transition: transform 0.05s ease-in-out;
+}
+
+.blob-button:hover {
+	transform: scale(1.1);
+	transition: transform 0.075s ease-in-out;
+}
