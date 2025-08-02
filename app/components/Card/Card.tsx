@@ -55,7 +55,7 @@ export default function Card({ type = CardName.Airmail }: { type?: CardName }) {
   return (
     <div className={`card ${getCssClass(type)}`} key={type}>
       <div className="card-start">
-        Dear Fink,
+        Dear future Idrees,
       </div>
       <div className="card-message" contentEditable={true}>
         Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!

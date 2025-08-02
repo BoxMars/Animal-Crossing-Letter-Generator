@@ -14,9 +14,9 @@
 }
 
 :root {
-	--card-vertical-padding: 7.5%;
-	--card-horizontal-padding: 9.4%;
-	--card-scale: 0.4;
+	--card-horizontal-padding: 10.9%;
+	--card-vertical-padding: 9.5%;
+	--card-scale: 0.35;
 	--card-start-color: #010101;
 	--card-message-color: #010101;
 	--card-signature-color: #010101;
