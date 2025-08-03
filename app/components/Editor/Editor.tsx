@@ -22,12 +22,14 @@ async function saveImage(cardElement: HTMLElement) {
     scale: 1 / cardScale,
     compress: true,
   });
+
   // Detect Safari
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   if (isSafari) {
     // Delay to prevent Safari from crashing due to GPU overload
     await new Promise(resolve => setTimeout(resolve, 240));
   }
+
   // Copy to clipboard
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
@@ -45,6 +47,8 @@ async function saveImage(cardElement: HTMLElement) {
     // Delay to prevent Safari from crashing due to GPU overload
     await new Promise(resolve => setTimeout(resolve, 250));
   }
+  
+  // Download the image
   result.download({
     format: "png",
     filename: "animal-crossing-card"
@@ -97,7 +101,9 @@ export default function Editor({ cardType, shareMode: shareMode = false, startTe
           }} />
         )}
         {!shareMode && (
-          <Button label="Share w/ the World" />
+          <Button label="Share w/ the World" onClick={() => {
+            confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!");
+          }} />
         )}
       </div>
     </div>

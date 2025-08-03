@@ -1,4 +1,5 @@
 import "./Dialogue.css";
+import { useNavigate } from "react-router";
 
 export function Dialogue({ name, message }: { name: string; message: string }) {
   return (
@@ -31,9 +32,21 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
   );
 }
 
-export function DialogueOverlay({ name, message }: { name: string; message: string }) {
+export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string }) {
+  const navigate = useNavigate();
   return (
-    <div className="dialogue-page">
+    <div className="dialogue-page" onClick={() => {
+      // Fade out over the course of 0.5 seconds
+      const dialoguePage = document.querySelector(".dialogue-page");
+      if (dialoguePage instanceof HTMLElement) {
+        dialoguePage.style.opacity = "0";
+        setTimeout(() => {
+          if (linkTo !== undefined) {
+            navigate(linkTo);
+          }
+        }, 250);
+      }
+    }}>
       <Dialogue name={name} message={message} />
     </div>
   );
