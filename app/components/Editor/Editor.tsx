@@ -2,7 +2,7 @@ import "./Editor.css";
 import Card from "~/components/Card/Card";
 import { CardName } from "~/components/Card/Card";
 import Button from "~/components/Button/Button";
-import html2canvas from "html2canvas";
+import { snapdom } from '@zumer/snapdom';
 import { useNavigate } from "react-router";
 import LZString from "lz-string";
 
@@ -15,25 +15,39 @@ export function decode(encodedText: string) {
   return decoded;
 }
 
-function saveImage(cardElement: HTMLElement) {
+async function saveImage(cardElement: HTMLElement) {
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
-  html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
-    // Copy to clipboard
-    canvas.toBlob((blob) => {
-      if (blob) {
-        const item = new ClipboardItem({ "image/png": blob });
-        navigator.clipboard.write([item]).then(() => {
-          console.log("Image copied to clipboard");
-        }).catch(err => {
-          console.error("Failed to copy image to clipboard", err);
-        });
-      }
-    });
-    // Download the image
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = `animal-crossing-card.png`;
-    link.click();
+  const result = await snapdom(cardElement, {
+    embedFonts: true,
+    scale: 1 / cardScale,
+    compress: true,
+  });
+  // Detect Safari
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isSafari) {
+    // Delay to prevent Safari from crashing due to GPU overload
+    await new Promise(resolve => setTimeout(resolve, 240));
+  }
+  // Copy to clipboard
+  const canvas = await result.toCanvas();
+  canvas.toBlob((blob) => {
+    if (blob) {
+      const item = new ClipboardItem({ "image/png": blob });
+      navigator.clipboard.write([item]).then(() => {
+        console.log("Image copied to clipboard");
+      }).catch(err => {
+        console.error("Failed to copy image to clipboard", err);
+      });
+    }
+  });
+
+  if (isSafari) {
+    // Delay to prevent Safari from crashing due to GPU overload
+    await new Promise(resolve => setTimeout(resolve, 250));
+  }
+  result.download({
+    format: "png",
+    filename: "animal-crossing-card"
   });
 }
 

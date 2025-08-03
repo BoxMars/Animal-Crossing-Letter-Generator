@@ -66,6 +66,17 @@
 		0px 0px calc(5px * var(--card-scale)) calc(10px * var(--card-scale)) var(--card-message-background);
 }
 
+/* Detect safari */
+@supports (-webkit-backdrop-filter: blur(0)) {
+	.card-start,
+	.card-message,
+	.card-signature {
+		box-shadow: none;
+		border: calc(10px * var(--card-scale)) solid var(--card-message-background);
+		border-radius: 0.65lh;
+	}
+}
+
 .card-start {
 	margin-left: calc(var(--card-background-padding) * -1);
 	line-height: 1.2;
