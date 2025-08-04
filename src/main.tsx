@@ -13,7 +13,7 @@ ReactDOM.createRoot(root!).render(
       <Route path="/" element={<Introduction />} />
       <Route path="library" element={<Library />} />
       <Route path="editor" element={<Editor />} />
-      <Route path="share" element={<Editor />} />
+      <Route path="share" element={<Editor shareMode />} />
     </Routes>
   </HashRouter>
 );

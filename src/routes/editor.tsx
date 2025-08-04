@@ -9,7 +9,7 @@ import { CardName } from "../components/Card/Card";
 //   ];
 // }
 
-export default function EditorPage() {
+export default function EditorPage({ shareMode = false } : { shareMode?: boolean }) {
   const [params] = useSearchParams();
   let cardType: CardName = CardName.Airmail;
   if (params.has("card")) {
@@ -24,6 +24,6 @@ export default function EditorPage() {
   const messageText = params.get("message") ? decode(params.get("message")!) : undefined;
   const signatureText = params.get("signature") ? decode(params.get("signature")!) : undefined;
   return (
-    <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText}/>
+    <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText} shareMode={shareMode} />
   );
 }
