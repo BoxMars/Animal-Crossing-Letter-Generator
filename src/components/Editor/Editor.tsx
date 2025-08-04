@@ -62,7 +62,7 @@ function copyLink(cardType: CardName, startText: string, messageText: string, si
     message: encode(messageText),
     signature: encode(signatureText)
   });
-  const url = `${window.location.origin}/share?${params.toString()}`;
+  const url = `${window.location.origin}/#/share?${params.toString()}`;
   // Copy to clipboard
   navigator.clipboard.writeText(url).then(() => {
     console.log("Link copied to clipboard");
