@@ -11,7 +11,7 @@ import { CardName } from "../components/Card/Card";
 
 export default function EditorPage() {
   const [params] = useSearchParams();
-  let cardType = CardName.Airmail;
+  let cardType: CardName = CardName.Airmail;
   if (params.has("card")) {
     const card = params.get("card");
     if (card && Object.values(CardName).includes(card as CardName)) {

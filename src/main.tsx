@@ -5,6 +5,15 @@ import Library from "./routes/library";
 import Editor from "./routes/editor";
 import "./main.css";
 
+// Load local font file
+const font = new FontFace("Seurat Pro B", "url(fonts/FOT-Seurat_Pro_B.otf)");
+font.load().then(() => {
+  document.fonts.add(font);
+  console.log("Font loaded successfully");
+}).catch(err => {
+  console.error("Failed to load font", err);
+});
+
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root!).render(
