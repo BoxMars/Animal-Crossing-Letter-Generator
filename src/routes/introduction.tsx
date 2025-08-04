@@ -1,11 +1,11 @@
-import type { Route } from "./+types/introduction";
-import { DialogueOverlay } from "~/components/Dialogue/Dialogue";
+// import type { Route } from "./+types/introduction";
+import { DialogueOverlay } from "../components/Dialogue/Dialogue";
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Animal Crossing Letter Generator" },
-  ];
-}
+// export function meta({ }: Route.MetaArgs) {
+//   return [
+//     { title: "Animal Crossing Letter Generator" },
+//   ];
+// }
 
 export default function Home() {
   return (

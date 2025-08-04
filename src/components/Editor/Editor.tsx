@@ -1,7 +1,7 @@
 import "./Editor.css";
-import Card from "~/components/Card/Card";
-import { CardName } from "~/components/Card/Card";
-import Button from "~/components/Button/Button";
+import Card from "../Card/Card";
+import { CardName } from "../Card/Card";
+import Button from "../Button/Button";
 import { snapdom } from '@zumer/snapdom';
 import { useNavigate } from "react-router";
 import LZString from "lz-string";
@@ -16,42 +16,37 @@ export function decode(encodedText: string) {
 }
 
 async function saveImage(cardElement: HTMLElement) {
+  console.log("Saving image...");
+
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
   const result = await snapdom(cardElement, {
-    embedFonts: true,
-    scale: 1 / cardScale,
+    embedFonts: true, // TODO: This is the problematic part
+    scale: 1 / cardScale * 0.8,
     compress: true,
   });
-
-  // Detect Safari
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if (isSafari) {
-    // Delay to prevent Safari from crashing due to GPU overload
-    await new Promise(resolve => setTimeout(resolve, 240));
-  }
-
+  
   // Copy to clipboard
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
     if (blob) {
+      // Copy to clipboard
+      console.log("Copying to clipboard...");
       const item = new ClipboardItem({ "image/png": blob });
       navigator.clipboard.write([item]).then(() => {
         console.log("Image copied to clipboard");
       }).catch(err => {
         console.error("Failed to copy image to clipboard", err);
       });
-    }
-  });
 
-  if (isSafari) {
-    // Delay to prevent Safari from crashing due to GPU overload
-    await new Promise(resolve => setTimeout(resolve, 250));
-  }
-  
-  // Download the image
-  result.download({
-    format: "png",
-    filename: "animal-crossing-card"
+      // Download to machine
+      console.log("Downloading image...");
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "animal-crossing-card.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   });
 }
 
@@ -62,7 +57,7 @@ function copyLink(cardType: CardName, startText: string, messageText: string, si
     message: encode(messageText),
     signature: encode(signatureText)
   });
-  const url = `${window.location.origin}/share?${params.toString()}`;
+  const url = `${window.location.origin}/#/share?${params.toString()}`;
   // Copy to clipboard
   navigator.clipboard.writeText(url).then(() => {
     console.log("Link copied to clipboard");
