@@ -18,18 +18,11 @@ export function decode(encodedText: string) {
 async function saveImage(cardElement: HTMLElement) {
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
   const result = await snapdom(cardElement, {
-    embedFonts: true,
+    embedFonts: true, // TODO: This is the problematic part
     scale: 1 / cardScale,
     compress: true,
   });
-
-  // Detect Safari
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if (isSafari) {
-    // Delay to prevent Safari from crashing due to GPU overload
-    await new Promise(resolve => setTimeout(resolve, 240));
-  }
-
+  
   // Copy to clipboard
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
@@ -43,11 +36,6 @@ async function saveImage(cardElement: HTMLElement) {
     }
   });
 
-  if (isSafari) {
-    // Delay to prevent Safari from crashing due to GPU overload
-    await new Promise(resolve => setTimeout(resolve, 250));
-  }
-  
   // Download the image
   result.download({
     format: "png",

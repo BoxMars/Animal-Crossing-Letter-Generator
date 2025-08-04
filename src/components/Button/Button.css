@@ -1,8 +1,3 @@
-@font-face {
-	font-family: "Seurat Pro B";
-	src: url("fonts/FOT-Seurat_Pro_B.otf") format("opentype");
-}
-
 .blob-button {
     background: #00c7ba;
     color: white;

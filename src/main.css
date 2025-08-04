@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Seurat Pro B";
+	src: url("../fonts/FOT-Seurat_Pro_B.otf") format("opentype");
+}
+
 html, body, #root {
   width: 100%;
   height: 100%;
