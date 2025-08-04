@@ -1,7 +1,7 @@
 import "./Editor.css";
-import Card from "~/components/Card/Card";
-import { CardName } from "~/components/Card/Card";
-import Button from "~/components/Button/Button";
+import Card from "../Card/Card";
+import { CardName } from "../Card/Card";
+import Button from "../Button/Button";
 import { snapdom } from '@zumer/snapdom';
 import { useNavigate } from "react-router";
 import LZString from "lz-string";

@@ -1,16 +1,16 @@
-import type { Route } from "./+types/editor";
+// import type { Route } from "./+types/share";
 import { useSearchParams } from "react-router";
-import Editor from "~/components/Editor/Editor";
-import { decode } from "~/components/Editor/Editor";
-import { CardName } from "~/components/Card/Card";
+import Editor from "../components/Editor/Editor";
+import { decode } from "../components/Editor/Editor";
+import { CardName } from "../components/Card/Card";
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Animal Crossing Letter Editor" },
-  ];
-}
+// export function meta({ }: Route.MetaArgs) {
+//   return [
+//     { title: "Animal Crossing Letter Viewer" },
+//   ];
+// }
 
-export default function EditorPage() {
+export default function Share() {
   const [params] = useSearchParams();
   let cardType = CardName.Airmail;
   if (params.has("card")) {
@@ -25,6 +25,6 @@ export default function EditorPage() {
   const messageText = params.get("message") ? decode(params.get("message")!) : undefined;
   const signatureText = params.get("signature") ? decode(params.get("signature")!) : undefined;
   return (
-    <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText}/>
+    <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText} shareMode={true}/>
   );
 }
