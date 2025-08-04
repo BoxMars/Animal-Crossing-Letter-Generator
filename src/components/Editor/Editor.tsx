@@ -16,10 +16,12 @@ export function decode(encodedText: string) {
 }
 
 async function saveImage(cardElement: HTMLElement) {
+  console.log("Saving image...");
+
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
   const result = await snapdom(cardElement, {
     embedFonts: true, // TODO: This is the problematic part
-    scale: 1 / cardScale,
+    scale: 1 / cardScale * 0.8,
     compress: true,
   });
   
@@ -27,19 +29,24 @@ async function saveImage(cardElement: HTMLElement) {
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
     if (blob) {
+      // Copy to clipboard
+      console.log("Copying to clipboard...");
       const item = new ClipboardItem({ "image/png": blob });
       navigator.clipboard.write([item]).then(() => {
         console.log("Image copied to clipboard");
       }).catch(err => {
         console.error("Failed to copy image to clipboard", err);
       });
-    }
-  });
 
-  // Download the image
-  result.download({
-    format: "png",
-    filename: "animal-crossing-card"
+      // Download to machine
+      console.log("Downloading image...");
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "animal-crossing-card.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   });
 }
 
