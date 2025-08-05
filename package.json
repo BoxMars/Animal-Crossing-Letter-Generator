@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "npm run build &&vite preview"
+    "preview": "npm run build && vite preview"
   },
   "dependencies": {
     "@zumer/snapdom": "^1.9.7",
