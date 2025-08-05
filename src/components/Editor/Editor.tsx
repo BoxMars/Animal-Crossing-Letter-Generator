@@ -2,7 +2,7 @@ import "./Editor.css";
 import Card from "../Card/Card";
 import { CardName } from "../Card/Card";
 import Button from "../Button/Button";
-import { snapdom } from '@zumer/snapdom';
+import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
 import LZString from "lz-string";
 
@@ -15,42 +15,26 @@ export function decode(encodedText: string) {
   return decoded;
 }
 
-async function saveImage(cardElement: HTMLElement) {
+function saveImage(cardElement: HTMLElement) {
   console.log("Saving image...");
-
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
-  const result = await snapdom(cardElement, {
-    embedFonts: true, // TODO: This is the problematic part
-    scale: 1 / cardScale * 0.8,
-    compress: true,
-  });
-  
-  // Copy to clipboard
-  const canvas = await result.toCanvas();
-  canvas.toBlob((blob) => {
-    if (blob) {
-      if (navigator.clipboard && window.ClipboardItem) {
-        // Copy to clipboard
-        console.log("Copying to clipboard...");
+  html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
+    // Copy to clipboard
+    canvas.toBlob((blob) => {
+      if (blob) {
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]).then(() => {
           console.log("Image copied to clipboard");
         }).catch(err => {
           console.error("Failed to copy image to clipboard", err);
         });
-      } else {
-        console.warn("Clipboard API or ClipboardItem not supported in this browser.");
       }
-
-      // Download to machine
-      console.log("Downloading image...");
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "animal-crossing-card.png";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    });
+    // Download the image
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = `animal-crossing-card.png`;
+    link.click();
   });
 }
 
