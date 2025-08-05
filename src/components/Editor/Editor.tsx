@@ -29,14 +29,18 @@ async function saveImage(cardElement: HTMLElement) {
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
     if (blob) {
-      // Copy to clipboard
-      console.log("Copying to clipboard...");
-      const item = new ClipboardItem({ "image/png": blob });
-      navigator.clipboard.write([item]).then(() => {
-        console.log("Image copied to clipboard");
-      }).catch(err => {
-        console.error("Failed to copy image to clipboard", err);
-      });
+      if (navigator.clipboard && window.ClipboardItem) {
+        // Copy to clipboard
+        console.log("Copying to clipboard...");
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]).then(() => {
+          console.log("Image copied to clipboard");
+        }).catch(err => {
+          console.error("Failed to copy image to clipboard", err);
+        });
+      } else {
+        console.warn("Clipboard API or ClipboardItem not supported in this browser.");
+      }
 
       // Download to machine
       console.log("Downloading image...");

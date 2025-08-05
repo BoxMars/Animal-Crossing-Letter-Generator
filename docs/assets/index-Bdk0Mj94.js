@@ -16141,13 +16141,17 @@ async function saveImage(cardElement) {
   const canvas = await result.toCanvas();
   canvas.toBlob((blob) => {
     if (blob) {
-      console.log("Copying to clipboard...");
-      const item = new ClipboardItem({ "image/png": blob });
-      navigator.clipboard.write([item]).then(() => {
-        console.log("Image copied to clipboard");
-      }).catch((err) => {
-        console.error("Failed to copy image to clipboard", err);
-      });
+      if (navigator.clipboard && window.ClipboardItem) {
+        console.log("Copying to clipboard...");
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]).then(() => {
+          console.log("Image copied to clipboard");
+        }).catch((err) => {
+          console.error("Failed to copy image to clipboard", err);
+        });
+      } else {
+        console.warn("Clipboard API or ClipboardItem not supported in this browser.");
+      }
       console.log("Downloading image...");
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
@@ -16226,4 +16230,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) })
   ] }) })
 );
-//# sourceMappingURL=index-CXSEfprg.js.map
+//# sourceMappingURL=index-Bdk0Mj94.js.map
