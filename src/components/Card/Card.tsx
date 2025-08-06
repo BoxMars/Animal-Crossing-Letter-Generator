@@ -1,4 +1,5 @@
 import "./Card.css";
+import CanvasBackground from "../CanvasBackground/CanvasBackground";
 
 export const CardName = {
   Airmail: "Airmail",
@@ -107,6 +108,13 @@ function getCssClass(type: CardName): string {
   return `${type.toLowerCase().replaceAll(" ", "-").replaceAll("'", "")}-card`;
 }
 
+const backgroundColors: Record<string, string> = {
+  [CardName.Gem]: "rgb(185, 222, 199)",
+  [CardName.Balloons]: "rgb(252, 252, 240)",
+  [CardName.Fireworks]: "rgb(54, 42, 152)",
+  [CardName.Hibiscus]: "rgb(243, 241, 242)",
+}
+
 export default function Card({
   type = CardName.Airmail,
   tilt = false,
@@ -132,17 +140,23 @@ export default function Card({
       key={type}
       onClick={onClick}
     >
-      <div className="card-start" contentEditable={editable}>
-        {startText}
-      </div>
-      <div className="card-message-container">
-        <div className="card-message" contentEditable={editable}>
-          {messageText}
+      <CanvasBackground className="card-start" backgroundColor={backgroundColors[type]}>
+        <div contentEditable={editable}>
+          {startText}
         </div>
+      </CanvasBackground>
+      <div className="card-message-container">
+        <CanvasBackground backgroundColor={backgroundColors[type]} className="card-message-inner-container">
+          <div className="card-message" contentEditable={editable}>
+            {messageText}
+          </div>
+        </CanvasBackground>
       </div>
-      <div className="card-signature" contentEditable={editable}>
-        {signatureText}
-      </div>
+      <CanvasBackground className="card-signature" backgroundColor={backgroundColors[type]}>
+        <div contentEditable={editable}>
+          {signatureText}
+        </div>
+      </CanvasBackground>
       {zoomable ? (
         <div className="card-label">
           {type}
