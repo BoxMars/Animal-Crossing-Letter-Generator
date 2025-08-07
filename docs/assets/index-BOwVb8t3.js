@@ -14293,26 +14293,24 @@ function drawCanvas(canvas, backgroundColor2) {
     borderHeight += halfStep * 2;
   }
 }
-function CanvasBackground({ children, className, backgroundColor: backgroundColor2 }) {
+function CanvasBackground({
+  children,
+  className,
+  backgroundColor: backgroundColor2,
+  contentToWatch
+}) {
   const canvasRef = reactExports.useRef(null);
   reactExports.useEffect(() => {
-    function handleResize() {
-      if (canvasRef.current && backgroundColor2) {
-        const rect = canvasRef.current.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        const width = Math.round(rect.width * dpr);
-        const height = Math.round(rect.height * dpr);
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
-        drawCanvas(canvasRef.current, backgroundColor2);
-      }
+    if (canvasRef.current && backgroundColor2) {
+      const rect = canvasRef.current.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.round(rect.width * dpr);
+      const height = Math.round(rect.height * dpr);
+      canvasRef.current.width = width;
+      canvasRef.current.height = height;
+      drawCanvas(canvasRef.current, backgroundColor2);
     }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [backgroundColor2]);
+  }, [canvasRef, backgroundColor2, contentToWatch]);
   if (!backgroundColor2) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "canvas-background-container" + (className ? ` ${className}` : ""), children });
   }
@@ -14418,19 +14416,43 @@ function Card({
   editable = false,
   zoomable = true,
   onClick,
-  startText = "Dear Villager,",
-  messageText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
-  signatureText = "From Tom Nook"
+  startText: startDisplayText = "Dear Villager,",
+  messageText: messageDisplayText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
+  signatureText: signatureDisplayText = "From Tom Nook"
 }) {
+  const startRef = reactExports.useRef(null);
+  const messageRef = reactExports.useRef(null);
+  const signatureRef = reactExports.useRef(null);
+  const [startText, setStartText] = reactExports.useState(startDisplayText);
+  const [messageText, setMessageText] = reactExports.useState(messageDisplayText);
+  const [signatureText, setSignatureText] = reactExports.useState(signatureDisplayText);
+  reactExports.useEffect(() => {
+    if (startRef.current) {
+      startRef.current.addEventListener("input", () => {
+        setStartText(startRef.current?.textContent || startDisplayText);
+        console.log("Start text updated:", startRef.current?.textContent);
+      });
+    }
+    if (messageRef.current) {
+      messageRef.current.addEventListener("input", () => {
+        setMessageText(messageRef.current?.textContent || messageDisplayText);
+      });
+    }
+    if (signatureRef.current) {
+      signatureRef.current.addEventListener("input", () => {
+        setSignatureText(signatureRef.current?.textContent || signatureDisplayText);
+      });
+    }
+  }, [startRef, messageRef, signatureRef, startDisplayText, messageDisplayText, signatureDisplayText]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       className: `card ${getCssClass(type)} ${tilt ? "card-tilt" : ""} ${zoomable ? "card-zoomable" : ""}`,
       onClick,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-start", backgroundColor: backgroundColors[type], children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, children: startText }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { backgroundColor: backgroundColors[type], className: "card-message-inner-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message", contentEditable: editable, children: messageText }) }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-signature", backgroundColor: backgroundColors[type], children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, children: signatureText }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-start", backgroundColor: backgroundColors[type], contentToWatch: startText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, ref: startRef, suppressContentEditableWarning: true, children: startDisplayText }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { backgroundColor: backgroundColors[type], className: "card-message-inner-container", contentToWatch: messageText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message", contentEditable: editable, ref: messageRef, suppressContentEditableWarning: true, children: messageDisplayText }) }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-signature", backgroundColor: backgroundColors[type], contentToWatch: signatureText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, ref: signatureRef, suppressContentEditableWarning: true, children: signatureDisplayText }) }),
         zoomable ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-label", children: type }) : null
       ]
     },
@@ -22800,4 +22822,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) })
   ] }) })
 );
-//# sourceMappingURL=index-D4jug46H.js.map
+//# sourceMappingURL=index-BOwVb8t3.js.map

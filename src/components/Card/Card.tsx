@@ -1,5 +1,6 @@
 import "./Card.css";
 import CanvasBackground from "../CanvasBackground/CanvasBackground";
+import { useEffect, useRef, useState } from "react";
 
 export const CardName = {
   Airmail: "Airmail",
@@ -121,9 +122,9 @@ export default function Card({
   editable = false,
   zoomable = true,
   onClick,
-  startText = "Dear Villager,",
-  messageText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
-  signatureText = "From Tom Nook"
+  startText: startDisplayText = "Dear Villager,",
+  messageText: messageDisplayText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
+  signatureText: signatureDisplayText = "From Tom Nook"
 }: {
   type?: CardName,
   tilt?: boolean,
@@ -134,27 +135,54 @@ export default function Card({
   messageText?: string,
   signatureText?: string
 }) {
+  const startRef = useRef<HTMLDivElement>(null);
+  const messageRef = useRef<HTMLDivElement>(null);
+  const signatureRef = useRef<HTMLDivElement>(null);
+
+  const [startText, setStartText] = useState(startDisplayText);
+  const [messageText, setMessageText] = useState(messageDisplayText);
+  const [signatureText, setSignatureText] = useState(signatureDisplayText);
+
+  useEffect(() => {
+    if (startRef.current) {
+      startRef.current.addEventListener("input", () => {
+        setStartText(startRef.current?.textContent || startDisplayText);
+        console.log("Start text updated:", startRef.current?.textContent);
+      });
+    }
+    if (messageRef.current) {
+      messageRef.current.addEventListener("input", () => {
+        setMessageText(messageRef.current?.textContent || messageDisplayText);
+      });
+    }
+    if (signatureRef.current) {
+      signatureRef.current.addEventListener("input", () => {
+        setSignatureText(signatureRef.current?.textContent || signatureDisplayText);
+      });
+    }
+  }, [startRef, messageRef, signatureRef, startDisplayText, messageDisplayText, signatureDisplayText]);
+
   return (
     <div
       className={`card ${getCssClass(type)} ${tilt ? "card-tilt" : ""} ${zoomable ? "card-zoomable" : ""}`}
       key={type}
       onClick={onClick}
     >
-      <CanvasBackground className="card-start" backgroundColor={backgroundColors[type]}>
-        <div contentEditable={editable}>
-          {startText}
+      <CanvasBackground className="card-start" backgroundColor={backgroundColors[type]} contentToWatch={startText}>
+        <div contentEditable={editable} ref={startRef} suppressContentEditableWarning>
+          {startDisplayText}
         </div>
       </CanvasBackground>
       <div className="card-message-container">
-        <CanvasBackground backgroundColor={backgroundColors[type]} className="card-message-inner-container">
-          <div className="card-message" contentEditable={editable}>
-            {messageText}
+        <CanvasBackground backgroundColor={backgroundColors[type]} className="card-message-inner-container" contentToWatch={messageText}>
+          <div className="card-message" contentEditable={editable} ref={messageRef} suppressContentEditableWarning>
+            {messageDisplayText}
           </div>
         </CanvasBackground>
       </div>
-      <CanvasBackground className="card-signature" backgroundColor={backgroundColors[type]}>
-        <div contentEditable={editable}>
-          {signatureText}
+      <CanvasBackground className="card-signature" backgroundColor={backgroundColors[type]} contentToWatch={signatureText}>
+        <div contentEditable={editable} ref={signatureRef} suppressContentEditableWarning>
+          {signatureDisplayText}
         </div>
       </CanvasBackground>
       {zoomable ? (

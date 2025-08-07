@@ -33,7 +33,7 @@ function drawCanvas(canvas: HTMLCanvasElement, backgroundColor: string) {
   const height = canvas.height - count * halfStep * 2 - padding * 2;
   const radius = Math.min(30, width / 2, height / 2) * scale;
   const colorTemplate = backgroundColor.replace("rgb", "rgba").substring(0, backgroundColor.length) + ", ";
-  
+
 
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -61,29 +61,31 @@ function drawCanvas(canvas: HTMLCanvasElement, backgroundColor: string) {
   }
 }
 
-export default function CanvasBackground({ children, className, backgroundColor }: { children?: React.ReactNode, className?: string, backgroundColor?: string }) {
+export default function CanvasBackground({
+  children,
+  className,
+  backgroundColor,
+  contentToWatch
+}: {
+  children?: React.ReactNode,
+  className?: string,
+  backgroundColor?: string,
+  contentToWatch?: string
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // Redraw the component when contentToWatch changes
   useEffect(() => {
-    function handleResize() {
-      if (canvasRef.current && backgroundColor) {
-        const rect = canvasRef.current.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        const width = Math.round(rect.width * dpr);
-        const height = Math.round(rect.height * dpr);
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
-        drawCanvas(canvasRef.current, backgroundColor);
-      }
+    if (canvasRef.current && backgroundColor) {
+      const rect = canvasRef.current.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.round(rect.width * dpr);
+      const height = Math.round(rect.height * dpr);
+      canvasRef.current.width = width;
+      canvasRef.current.height = height;
+      drawCanvas(canvasRef.current, backgroundColor);
     }
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [backgroundColor]);
-
+  }, [canvasRef, backgroundColor, contentToWatch]);
 
   if (!backgroundColor) {
     return (
@@ -92,7 +94,6 @@ export default function CanvasBackground({ children, className, backgroundColor 
       </div>
     );
   }
-
   return (
     <div className={"canvas-background-container" + (className ? ` ${className}` : "")}>
       <canvas ref={canvasRef} className="canvas-background" />
