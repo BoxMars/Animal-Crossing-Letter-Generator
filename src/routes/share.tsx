@@ -1,4 +1,3 @@
-// import type { Route } from "./+types/share";
 import { useSearchParams } from "react-router";
 import Editor from "../components/Editor/Editor";
 import { decode } from "../components/Editor/editorFunctions";

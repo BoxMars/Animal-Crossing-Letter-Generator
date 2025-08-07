@@ -4,16 +4,19 @@ import Introduction from "./routes/introduction";
 import Library from "./routes/library";
 import Editor from "./routes/editor";
 import "./main.css";
+import Waves from "./components/Waves/Waves";
 
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root!).render(
   <HashRouter>
+    <Waves type="back"/>
     <Routes>
       <Route path="/" element={<Introduction />} />
       <Route path="library" element={<Library />} />
       <Route path="editor" element={<Editor />} />
       <Route path="share" element={<Editor shareMode />} />
     </Routes>
+    <Waves type="front"/>
   </HashRouter>
 );
