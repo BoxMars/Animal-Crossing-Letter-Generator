@@ -1,19 +1,10 @@
 import "./Editor.css";
 import Card from "../Card/Card";
-import { CardName } from "../Card/Card";
+import { CardName } from "../Card/cardConstants";
 import Button from "../Button/Button";
+import { encode } from "./editorFunctions";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
-import LZString from "lz-string";
-
-function encode(text: string) {
-  return LZString.compressToEncodedURIComponent(text);
-}
-
-export function decode(encodedText: string) {
-  const decoded = LZString.decompressFromEncodedURIComponent(encodedText);
-  return decoded;
-}
 
 function saveImage(cardElement: HTMLElement) {
   console.log("Saving image...");

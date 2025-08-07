@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import Editor from "../components/Editor/Editor";
-import { decode } from "../components/Editor/Editor";
-import { CardName } from "../components/Card/Card";
+import { decode } from "../components/Editor/editorFunctions";
+import { CardName } from "../components/Card/cardConstants";
 
 // export function meta({ }: Route.MetaArgs) {
 //   return [

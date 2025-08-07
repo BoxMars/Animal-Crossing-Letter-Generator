@@ -184,13 +184,12 @@
 }
 
 :root {
-	--card-horizontal-padding: 10.9%;
-	--card-vertical-padding: 9.5%;
+	--card-horizontal-padding: 9%;
+	--card-vertical-padding: 9.1%;
 	--card-scale: 0.35;
 	--card-start-color: #010101;
 	--card-message-color: #010101;
 	--card-signature-color: #010101;
-	--card-background-padding: calc(45px * var(--card-scale));
 }
 
 .card {
@@ -200,11 +199,10 @@
 	background-size: contain;
 	filter: drop-shadow(0 10px 6px rgba(0, 0, 0, 0.15));
 	margin: 15px;
-	border-radius: 5px;
 	box-sizing: border-box;
 	font-family: "Seurat Pro B", "Varela Round", sans-serif;
-	font-size: calc(38px * var(--card-scale));
-	letter-spacing: 1.5px;
+	font-size: calc(36px * var(--card-scale));
+	letter-spacing: calc(3.5px * var(--card-scale));
 	line-height: 1.5;
 	display: flex;
 	flex-direction: column;
@@ -223,22 +221,17 @@
 }
 
 .card-start,
-.card-message,
 .card-signature {
 	padding: var(--card-background-padding);
 	padding-top: calc(var(--card-background-padding) / 3);
 	padding-bottom: calc(var(--card-background-padding) / 3);
 }
 
-.card-start {
-	margin-left: calc(var(--card-background-padding) * -1);
+.card-start, .card-signature {
 	line-height: 1.2;
-}
-
-
-.card-signature {
-	margin-right: calc(var(--card-background-padding) * -1);
-	line-height: 1.2;
+	padding: 2.1%;
+	padding-top: 0.8%;
+	padding-bottom: 0.8%;
 }
 
 .card-start {
@@ -246,6 +239,7 @@
 	top: var(--card-vertical-padding);
 	left: var(--card-horizontal-padding);
 	color: var(--card-start-color);
+	margin-left: calc(var(--card-background-padding) * -1);
 }
 
 .card-message-container {
@@ -254,8 +248,10 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 66%;
-	margin: 17% 15.5%;
+	width: 100%;
+	height: 100%;
+	padding-left: 14%;
+	padding-right: 13%;
 	flex-grow: 1;
 	box-sizing: border-box;
 }
@@ -268,6 +264,10 @@
 	justify-content: center;
 	box-sizing: border-box;
 	word-break: break-word;
+	/* Padding for the canvas background */
+	padding: 3.8%;
+	padding-top: 2%;
+	padding-bottom: 2%;
 }
 
 .card-message {
@@ -275,6 +275,8 @@
 	max-width: 100%;
 	white-space: pre-wrap;
 	overflow-wrap: break-word;
+	max-height: 6lh;
+	overflow: scroll;
 }
 
 .card-signature {
@@ -283,6 +285,7 @@
 	bottom: var(--card-vertical-padding);
 	right: var(--card-horizontal-padding);
 	color: var(--card-signature-color);
+	margin-right: calc(var(--card-background-padding) * -1);
 }
 
 .card-label {
