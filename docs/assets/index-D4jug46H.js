@@ -14243,6 +14243,84 @@ function Home() {
     }
   );
 }
+function drawPathForRoundedRect(ctx, x, y, width, height, radius) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+}
+function drawCanvas(canvas, backgroundColor2) {
+  if (!canvas) {
+    return;
+  }
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    return;
+  }
+  const scale = (window.devicePixelRatio || 1) / 2;
+  const halfStep = 0.4 * scale;
+  const count = 25;
+  const padding = 1;
+  const x = count * halfStep + padding;
+  const y = count * halfStep + padding;
+  const width = canvas.width - count * halfStep * 2 - padding * 2;
+  const height = canvas.height - count * halfStep * 2 - padding * 2;
+  const radius = Math.min(30, width / 2, height / 2) * scale;
+  const colorTemplate = backgroundColor2.replace("rgb", "rgba").substring(0, backgroundColor2.length) + ", ";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawPathForRoundedRect(ctx, x, y, width, height, radius);
+  ctx.fillStyle = `${colorTemplate} 1)`;
+  ctx.fill();
+  let borderX = x;
+  let borderY = y;
+  let borderWidth = width;
+  let borderHeight = height;
+  for (let i = 0; i < count; i++) {
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = `${colorTemplate} ${1 - i / count})`;
+    drawPathForRoundedRect(ctx, borderX, borderY, borderWidth, borderHeight, radius + halfStep * i);
+    ctx.stroke();
+    borderX -= halfStep;
+    borderY -= halfStep;
+    borderWidth += halfStep * 2;
+    borderHeight += halfStep * 2;
+  }
+}
+function CanvasBackground({ children, className, backgroundColor: backgroundColor2 }) {
+  const canvasRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    function handleResize() {
+      if (canvasRef.current && backgroundColor2) {
+        const rect = canvasRef.current.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        const width = Math.round(rect.width * dpr);
+        const height = Math.round(rect.height * dpr);
+        canvasRef.current.width = width;
+        canvasRef.current.height = height;
+        drawCanvas(canvasRef.current, backgroundColor2);
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [backgroundColor2]);
+  if (!backgroundColor2) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "canvas-background-container" + (className ? ` ${className}` : ""), children });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "canvas-background-container" + (className ? ` ${className}` : ""), children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("canvas", { ref: canvasRef, className: "canvas-background" }),
+    children
+  ] });
+}
 const CardName = {
   Airmail: "Airmail",
   HappyClovers: "Happy-Clovers",
@@ -14328,6 +14406,12 @@ const DEFAULT_STATIONARY = [
 function getCssClass(type) {
   return `${type.toLowerCase().replaceAll(" ", "-").replaceAll("'", "")}-card`;
 }
+const backgroundColors = {
+  [CardName.Gem]: "rgb(185, 222, 199)",
+  [CardName.Balloons]: "rgb(252, 252, 240)",
+  [CardName.Fireworks]: "rgb(54, 42, 152)",
+  [CardName.Hibiscus]: "rgb(243, 241, 242)"
+};
 function Card({
   type = CardName.Airmail,
   tilt = false,
@@ -14344,9 +14428,9 @@ function Card({
       className: `card ${getCssClass(type)} ${tilt ? "card-tilt" : ""} ${zoomable ? "card-zoomable" : ""}`,
       onClick,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-start", contentEditable: editable, children: startText }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message", contentEditable: editable, children: messageText }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-signature", contentEditable: editable, children: signatureText }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-start", backgroundColor: backgroundColors[type], children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, children: startText }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { backgroundColor: backgroundColors[type], className: "card-message-inner-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message", contentEditable: editable, children: messageText }) }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-signature", backgroundColor: backgroundColors[type], children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, children: signatureText }) }),
         zoomable ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-label", children: type }) : null
       ]
     },
@@ -22716,4 +22800,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) })
   ] }) })
 );
-//# sourceMappingURL=index-BRMyszTb.js.map
+//# sourceMappingURL=index-D4jug46H.js.map

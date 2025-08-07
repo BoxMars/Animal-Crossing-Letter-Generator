@@ -190,8 +190,7 @@
 	--card-start-color: #010101;
 	--card-message-color: #010101;
 	--card-signature-color: #010101;
-	--card-message-background: transparent;
-	--card-background-padding: calc(16px * var(--card-scale));
+	--card-background-padding: calc(45px * var(--card-scale));
 }
 
 .card {
@@ -226,25 +225,9 @@
 .card-start,
 .card-message,
 .card-signature {
-	background: var(--card-message-background);
-	padding-left: var(--card-background-padding);
-	padding-right: var(--card-background-padding);
-	border-radius: 0.5lh;
-	box-shadow:
-		/* First shadow necessary for Firefox rendering issues */
-		inset 0 0 0 2px var(--card-message-background),
-		0px 0px calc(5px * var(--card-scale)) calc(10px * var(--card-scale)) var(--card-message-background);
-}
-
-/* Detect safari */
-@supports (-webkit-backdrop-filter: blur(0)) {
-	.card-start,
-	.card-message,
-	.card-signature {
-		box-shadow: none;
-		border: calc(10px * var(--card-scale)) solid var(--card-message-background);
-		border-radius: 0.65lh;
-	}
+	padding: var(--card-background-padding);
+	padding-top: calc(var(--card-background-padding) / 3);
+	padding-bottom: calc(var(--card-background-padding) / 3);
 }
 
 .card-start {
@@ -272,10 +255,19 @@
 	align-items: center;
 	justify-content: center;
 	width: 66%;
-	height: 6lh;
 	margin: 17% 15.5%;
 	flex-grow: 1;
 	box-sizing: border-box;
+}
+
+.card-message-inner-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	word-break: break-word;
 }
 
 .card-message {
@@ -329,7 +321,6 @@
 	--card-start-color: #da8528;
 	--card-message-color: #64553b;
 	--card-signature-color: var(--card-start-color);
-	--card-message-background: #fcfcf0;
 }
 
 .bandage-card {
@@ -446,7 +437,6 @@
 	--card-start-color: #ffbaf4;
 	--card-message-color: #c9a3ff;
 	--card-signature-color: #92a7f7;
-	--card-message-background: #362a98;
 }
 
 .flower-bouquet-card {
@@ -472,7 +462,6 @@
 	--card-start-color: #2d7f86;
 	--card-message-color: #398470;
 	--card-signature-color: var(--card-start-color);
-	--card-message-background: #b9dec7;
 }
 
 .goldfish-card {
@@ -508,7 +497,6 @@
 	--card-start-color: #d90b7c;
 	--card-message-color: #188da0;
 	--card-signature-color: var(--card-start-color);
-	--card-message-background: #f3f1f2;
 }
 
 .lovely-hearts-card {
@@ -597,6 +585,17 @@
 	--card-start-color: #ffcf72;
 	--card-message-color: #ffe9d6;
 	--card-signature-color: var(--card-start-color);
+}.canvas-background-container {
+  box-sizing: border-box;
+}
+
+.canvas-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }.editor  {
   width: 100%;
   height: 100%;

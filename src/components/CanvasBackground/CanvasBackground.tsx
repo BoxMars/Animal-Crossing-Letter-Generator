@@ -23,14 +23,15 @@ function drawCanvas(canvas: HTMLCanvasElement, backgroundColor: string) {
   if (!ctx) {
     return;
   }
-  const halfStep = 0.4;
+  const scale = (window.devicePixelRatio || 1) / 2;
+  const halfStep = 0.4 * scale;
   const count = 25;
   const padding = 1;
   const x = count * halfStep + padding;
   const y = count * halfStep + padding;
   const width = canvas.width - count * halfStep * 2 - padding * 2;
   const height = canvas.height - count * halfStep * 2 - padding * 2;
-  const radius = Math.min(30, width / 2, height / 2);
+  const radius = Math.min(30, width / 2, height / 2) * scale;
   const colorTemplate = backgroundColor.replace("rgb", "rgba").substring(0, backgroundColor.length) + ", ";
   
 
