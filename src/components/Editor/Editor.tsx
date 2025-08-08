@@ -2,7 +2,7 @@ import "./Editor.css";
 import Card from "../Card/Card";
 import { CardName } from "../Card/cardConstants";
 import Button from "../Button/Button";
-import { encode } from "./editorFunctions";
+import { generateLink } from "./editorFunctions";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
 
@@ -30,13 +30,7 @@ function saveImage(cardElement: HTMLElement) {
 }
 
 function copyLink(cardType: CardName, startText: string, messageText: string, signatureText: string) {
-  const params = new URLSearchParams({
-    card: cardType,
-    start: encode(startText),
-    message: encode(messageText),
-    signature: encode(signatureText)
-  });
-  const url = `${window.location.origin}/#/share?${params.toString()}`;
+  const url = generateLink(cardType, startText, messageText, signatureText);
   // Copy to clipboard
   navigator.clipboard.writeText(url).then(() => {
     console.log("Link copied to clipboard");

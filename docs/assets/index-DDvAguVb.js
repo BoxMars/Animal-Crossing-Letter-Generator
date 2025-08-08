@@ -14942,6 +14942,18 @@ function decode$2(encodedText) {
   const decoded = LZString.decompressFromEncodedURIComponent(encodedText);
   return decoded;
 }
+function generateLinkPage(cardType, startText, messageText, signatureText) {
+  const params = new URLSearchParams({
+    card: cardType,
+    start: encode(startText),
+    message: encode(messageText),
+    signature: encode(signatureText)
+  });
+  return "/share?" + params.toString();
+}
+function generateLink(cardType, startText, messageText, signatureText) {
+  return `${window.location.origin}/#${generateLinkPage(cardType, startText, messageText, signatureText)}`;
+}
 /*!
  * html2canvas 1.4.1 <https://html2canvas.hertzen.com>
  * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
@@ -22755,13 +22767,7 @@ function saveImage(cardElement) {
   });
 }
 function copyLink(cardType, startText, messageText, signatureText) {
-  const params = new URLSearchParams({
-    card: cardType,
-    start: encode(startText),
-    message: encode(messageText),
-    signature: encode(signatureText)
-  });
-  const url = `${window.location.origin}/#/share?${params.toString()}`;
+  const url = generateLink(cardType, startText, messageText, signatureText);
   navigator.clipboard.writeText(url).then(() => {
     console.log("Link copied to clipboard");
   }).catch((err) => {
@@ -22813,13 +22819,23 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
+const bottles = [{ "time": 0, "card": "Shooting-Stars", "start": "Dear Villager,", "message": "Hello, World!", "signature": "From Tom Nook" }];
+const bottlesData = {
+  bottles
+};
+function getRandomBottle() {
+  const bottles2 = bottlesData.bottles ?? [];
+  const randomBottle = bottles2[Math.floor(Math.random() * bottles2.length)];
+  const linkTo = generateLinkPage(randomBottle.card, randomBottle.start, randomBottle.message, randomBottle.signature);
+  return linkTo;
+}
 function FoundBottle() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     DialogueOverlay,
     {
       name: "Tom Nook",
       message: "Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!",
-      linkTo: "/share?card=Shooting-Stars&start=CIUwhgTgBAaglgGwWA5iCAaIA&message=KINwpgTgngLgFgSwHYHMAECDOaUHtnoy5oBGYauA1gIZQCEQA&signature=GIJw9gtgBAKpUDkxgNZA"
+      linkTo: getRandomBottle()
     }
   );
 }
@@ -22861,4 +22877,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-KILFf-9Z.js.map
+//# sourceMappingURL=index-DDvAguVb.js.map
