@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 0;
   width: 200%;
-  height: 140px;
+  height: 135px;
   overflow: hidden;
   display: flex;
   pointer-events: none;
@@ -45,6 +45,6 @@
 }
 
 .waves-hide {
-  margin-top: 140px;
+  margin-top: 135px;
   transition: margin-top 0.75s ease-in-out;
 }
