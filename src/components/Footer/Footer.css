@@ -1,0 +1,20 @@
+.footer {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.footer-text {
+  width: 30%;
+  font-family: "Seurat Pro B", sans-serif;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+  z-index: 4;
+}

@@ -1,9 +1,34 @@
 import "./Dialogue.css";
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export function Dialogue({ name, message }: { name: string; message: string }) {
+  const dialogue = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const dialogueElement = dialogue.current;
+      if (dialogueElement) {
+        const pageWidth = window.innerWidth;
+        const bubbleWidth = dialogueElement.offsetWidth;
+        if (bubbleWidth > pageWidth) {
+          const scale = (pageWidth / bubbleWidth) * 0.9;
+          dialogueElement.style.transform = `scale(${scale})`;
+        } else {
+          dialogueElement.style.transform = "";
+        }
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="dialogue-holder">
+    <div ref={dialogue} className="dialogue-holder">
       <div className="dialogue">
         <div className="dialogue-blobs">
           <div className="dialogue-blob-top"></div>
@@ -34,6 +59,7 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
 
 export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string | number}) {
   const navigate = useNavigate();
+
   return (
     <div className="dialogue-page" onClick={() => {
       // Fade out over the course of 0.5 seconds

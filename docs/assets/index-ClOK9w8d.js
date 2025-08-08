@@ -14202,7 +14202,28 @@ function useViewTransitionState(to, { relative } = {}) {
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
 function Dialogue({ name, message }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "dialogue-holder", children: [
+  const dialogue = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    const handleResize = () => {
+      const dialogueElement = dialogue.current;
+      if (dialogueElement) {
+        const pageWidth = window.innerWidth;
+        const bubbleWidth = dialogueElement.offsetWidth;
+        if (bubbleWidth > pageWidth) {
+          const scale = pageWidth / bubbleWidth * 0.9;
+          dialogueElement.style.transform = `scale(${scale})`;
+        } else {
+          dialogueElement.style.transform = "";
+        }
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref: dialogue, className: "dialogue-holder", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "dialogue", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "dialogue-blobs", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "dialogue-blob-top" }),
@@ -14478,8 +14499,22 @@ function CardSelection() {
   ));
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox-holder", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox", children: cards }) });
 }
+function Footer() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("footer", { className: "footer", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", style: { textAlign: "left" }, children: "Privacy Policy" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", children: "Made with ❤️ by Idrees" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "footer-text", style: { textAlign: "right" }, children: [
+      "Animal Crossing, characters, and images are property of Nintendo.",
+      /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+      "This fan project is not affiliated with or endorsed by Nintendo."
+    ] })
+  ] });
+}
 function Library() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { paddingTop: "30px", paddingBottom: "50px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {}) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { paddingTop: "30px" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+  ] });
 }
 function Button({ label, onClick }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "blob-button", onClick, children: label });
@@ -22923,4 +22958,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DfWYoa3r.js.map
+//# sourceMappingURL=index-ClOK9w8d.js.map
