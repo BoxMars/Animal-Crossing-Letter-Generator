@@ -8,8 +8,12 @@
   background-image: url("./egg-bottle-icon.png");
   background-size: cover;
   animation: bob 1.5s infinite ease-in-out;
-  transition: bottom 1s ease-in-out;
+  transition: bottom 1s ease-in-out, filter 0.2s ease-in-out;
   cursor: pointer !important;
+}
+
+.bottle:hover {
+  filter: drop-shadow(0 0 10px white);
 }
 
 @keyframes bob {
