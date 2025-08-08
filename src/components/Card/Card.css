@@ -406,7 +406,7 @@
 
 .wedding-card {
 	background-image: url("./backgrounds/Wedding_Card_NH.png");
-	--card-start-color: #4c8cba;
+	--card-start-color: #4c8	cba;
 	--card-message-color: #68ccd6;
 	--card-signature-color: var(--card-start-color);
 }

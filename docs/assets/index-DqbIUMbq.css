@@ -603,7 +603,7 @@
 
 .wedding-card {
 	background-image: url("/assets/Wedding_Card_NH-BDt4wn34.png");
-	--card-start-color: #4c8cba;
+	--card-start-color: #4c8	cba;
 	--card-message-color: #68ccd6;
 	--card-signature-color: var(--card-start-color);
 }
@@ -728,6 +728,12 @@
 		font-size: 18px;
 		min-width: 150px;
 		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.card-zoomable:hover {
+		transform: none;
 	}
 }@font-face {
   font-family: "Seurat Pro B";

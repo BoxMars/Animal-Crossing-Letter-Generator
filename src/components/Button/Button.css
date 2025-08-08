@@ -27,3 +27,9 @@
 		margin-bottom: 10px;
 	}
 }
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.card-zoomable:hover {
+		transform: none;
+	}
+}
