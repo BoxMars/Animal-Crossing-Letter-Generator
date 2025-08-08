@@ -1,0 +1,11 @@
+{
+  "bottles": [
+    {
+      "time": 0,
+      "card": "Shooting-Stars",
+      "start": "Dear Villager,",
+      "message": "Hello, World!",
+      "signature": "From Tom Nook"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ export default function Bottle({ visible = true }: { visible?: boolean }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/social");
+    navigate("/found-bottle");
   };
 
   return (

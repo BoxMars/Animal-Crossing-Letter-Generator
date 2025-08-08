@@ -22813,7 +22813,7 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
-function Social() {
+function FoundBottle() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     DialogueOverlay,
     {
@@ -22826,7 +22826,7 @@ function Social() {
 function Bottle({ visible = true }) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/social");
+    navigate("/found-bottle");
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: handleClick });
 }
@@ -22836,7 +22836,7 @@ function Waves({ type = "front" }) {
   reactExports.useEffect(() => {
     if (location.pathname === "/library") {
       setWaveHeight("gone");
-    } else if (location.pathname === "/social") {
+    } else if (location.pathname === "/found-bottle") {
       setWaveHeight("high");
     } else {
       setWaveHeight("low");
@@ -22856,9 +22856,9 @@ ReactDOM.createRoot(root).render(
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "library", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Library, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "editor", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "social", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Social, {}) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "found-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FoundBottle, {}) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DhHRwUi_.js.map
+//# sourceMappingURL=index-KILFf-9Z.js.map

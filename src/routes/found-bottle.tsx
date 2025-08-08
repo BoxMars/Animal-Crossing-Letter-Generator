@@ -1,6 +1,6 @@
 import { DialogueOverlay } from "../components/Dialogue/Dialogue";
 
-export default function Social() {
+export default function FoundBottle() {
   return (
     <DialogueOverlay
       name="Tom Nook"
