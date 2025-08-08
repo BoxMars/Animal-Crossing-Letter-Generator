@@ -1,0 +1,28 @@
+.bottle {
+  position: fixed;
+  bottom: -45px;
+  right: 30px;
+  transform: scale(0.9) rotate(18deg) translateX(-50%);
+  width: 72px;
+  height: 101px;
+  background-image: url("./egg-bottle-icon.png");
+  background-size: cover;
+  animation: bob 1.5s infinite ease-in-out;
+  transition: bottom 1s ease-in-out;
+  cursor: pointer !important;
+}
+
+@keyframes bob {
+  0%, 100% {
+    margin-bottom: 40px;
+  }
+  50% {
+    margin-bottom: 50px;
+    transform: scale(0.9) rotate(20deg) translateX(-50%);
+  }
+}
+
+.bottle-hide {
+  bottom: -200px;
+  transition: bottom 0.65s ease-in-out;
+}

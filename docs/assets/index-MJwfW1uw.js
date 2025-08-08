@@ -14459,7 +14459,7 @@ function Card({
     type
   );
 }
-function Mailbox() {
+function CardSelection() {
   const navigate = useNavigate();
   const cards = DEFAULT_STATIONARY.map((type) => /* @__PURE__ */ jsxRuntimeExports.jsx(
     Card,
@@ -14473,7 +14473,7 @@ function Mailbox() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox-holder", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox", children: cards }) });
 }
 function Library() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Mailbox, {});
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {});
 }
 function Button({ label, onClick }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "blob-button", onClick, children: label });
@@ -22813,13 +22813,19 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
+function Bottle({ visible = true }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}` });
+}
 function Waves({ type = "front" }) {
   const location = useLocation();
   const [wavesVisible, setWavesVisible] = reactExports.useState(true);
   reactExports.useEffect(() => {
     setWavesVisible(location.pathname !== "/library");
   }, [location.pathname]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves-container`, style: type === "front" ? { zIndex: 3 } : {}, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${!wavesVisible ? " waves-hide" : ""}` }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `waves-container`, style: type === "front" ? { zIndex: 3 } : {}, children: [
+    type === "front" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Bottle, { visible: wavesVisible }) : null,
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${!wavesVisible ? " waves-hide" : ""}` })
+  ] });
 }
 const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
@@ -22834,4 +22840,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-sUKFCOzt.js.map
+//# sourceMappingURL=index-MJwfW1uw.js.map

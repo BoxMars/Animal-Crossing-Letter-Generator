@@ -673,7 +673,6 @@ html {
   height: 135px;
   overflow: hidden;
   display: flex;
-  pointer-events: none;
 }
 
 .waves {
@@ -682,6 +681,7 @@ html {
   height: 100%;
   animation: waves-move var(--waves-speed) ease-in-out infinite alternate;
   transition: margin-top 0.75s ease-in-out;
+  pointer-events: none;
 }
 
 @keyframes waves-move {
@@ -714,4 +714,31 @@ html {
 .waves-hide {
   margin-top: 135px;
   transition: margin-top 0.75s ease-in-out;
+}.bottle {
+  position: fixed;
+  bottom: -45px;
+  right: 30px;
+  transform: scale(0.9) rotate(18deg) translateX(-50%);
+  width: 72px;
+  height: 101px;
+  background-image: url("/assets/egg-bottle-icon-DzQNdsXs.png");
+  background-size: cover;
+  animation: bob 1.5s infinite ease-in-out;
+  transition: bottom 1s ease-in-out;
+  cursor: pointer !important;
+}
+
+@keyframes bob {
+  0%, 100% {
+    margin-bottom: 40px;
+  }
+  50% {
+    margin-bottom: 50px;
+    transform: scale(0.9) rotate(20deg) translateX(-50%);
+  }
+}
+
+.bottle-hide {
+  bottom: -200px;
+  transition: bottom 0.65s ease-in-out;
 }

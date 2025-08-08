@@ -6,7 +6,6 @@
   height: 135px;
   overflow: hidden;
   display: flex;
-  pointer-events: none;
 }
 
 .waves {
@@ -15,6 +14,7 @@
   height: 100%;
   animation: waves-move var(--waves-speed) ease-in-out infinite alternate;
   transition: margin-top 0.75s ease-in-out;
+  pointer-events: none;
 }
 
 @keyframes waves-move {
