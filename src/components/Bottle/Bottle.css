@@ -10,11 +10,10 @@
   animation: bob 1.5s infinite ease-in-out;
   transition: bottom 1s ease-in-out, filter 0.1s ease-in-out;
   cursor: pointer !important;
-  filter: drop-shadow(0 0 5px white);
 }
 
 .bottle:hover {
-  filter: drop-shadow(0 0 10px white);
+  filter: drop-shadow(0 0 10px white) !important;
 }
 
 @keyframes bob {

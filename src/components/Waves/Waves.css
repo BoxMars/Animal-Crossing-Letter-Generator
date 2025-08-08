@@ -8,6 +8,10 @@
   display: flex;
 }
 
+.waves-container:hover > .bottle {
+  filter: drop-shadow(0 0 5px white);
+}
+
 .waves {
   position: absolute;
   width: 100%;

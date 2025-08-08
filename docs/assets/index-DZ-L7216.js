@@ -14473,7 +14473,7 @@ function CardSelection() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox-holder", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox", children: cards }) });
 }
 function Library() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {});
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { paddingTop: "30px", paddingBottom: "50px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {}) });
 }
 function Button({ label, onClick }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "blob-button", onClick, children: label });
@@ -22791,7 +22791,7 @@ function Editor({ cardType, shareMode = false, startText, messageText, signature
       shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Make Your Own", onClick: () => {
         navigate("/");
       } }),
-      !shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Share w/ the World", onClick: () => {
+      !shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Share in a Bottle", onClick: () => {
         confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!");
       } })
     ] })
@@ -22814,7 +22814,7 @@ function EditorPage({ shareMode = false }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
 function Bottle({ visible = true }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}` });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: () => alert("Bottle clicked!") });
 }
 function Waves({ type = "front" }) {
   const location = useLocation();
@@ -22840,4 +22840,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-BO7Y-g46.js.map
+//# sourceMappingURL=index-DZ-L7216.js.map
