@@ -2,14 +2,15 @@
   position: fixed;
   bottom: -45px;
   right: 30px;
-  transform: scale(0.9) rotate(18deg) translateX(-50%);
+  transform: scale(0.8) rotate(18deg) translateX(-50%);
   width: 72px;
   height: 101px;
   background-image: url("./egg-bottle-icon.png");
   background-size: cover;
   animation: bob 1.5s infinite ease-in-out;
-  transition: bottom 1s ease-in-out, filter 0.2s ease-in-out;
+  transition: bottom 1s ease-in-out, filter 0.1s ease-in-out;
   cursor: pointer !important;
+  filter: drop-shadow(0 0 5px white);
 }
 
 .bottle:hover {
@@ -22,7 +23,7 @@
   }
   50% {
     margin-bottom: 50px;
-    transform: scale(0.9) rotate(20deg) translateX(-50%);
+    transform: scale(0.8) rotate(14deg) translateX(-50%);
   }
 }
 
