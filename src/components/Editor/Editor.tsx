@@ -5,8 +5,9 @@ import Button from "../Button/Button";
 import { generateLink } from "./editorFunctions";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
-function saveImage(cardElement: HTMLElement) {
+function saveImage(cardElement: HTMLElement, callback?: (success: boolean) => void) {
   console.log("Saving image...");
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
   html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
@@ -26,6 +27,14 @@ function saveImage(cardElement: HTMLElement) {
     link.href = canvas.toDataURL("image/png");
     link.download = `animal-crossing-card.png`;
     link.click();
+    if (callback) {
+      callback(true);
+    }
+  }).catch(err => {
+    console.error("Failed to save image", err);
+    if (callback) {
+      callback(false);
+    }
   });
 }
 
@@ -40,20 +49,37 @@ function copyLink(cardType: CardName, startText: string, messageText: string, si
 }
 
 export default function Editor({ cardType, shareMode: shareMode = false, startText, messageText, signatureText }: { cardType: CardName, shareMode?: boolean, startText?: string, messageText?: string, signatureText?: string }) {
+  const LABEL_DELAY = 1500;
+  const SAVE_LABEL = "Save Image";
+  const LINK_LABEL = "Copy Link";
+
   const navigate = useNavigate();
+  const [saveButtonLabel, setSaveButtonLabel] = useState(SAVE_LABEL);
+  const [linkButtonLabel, setLinkButtonLabel] = useState(LINK_LABEL);
+
   return (
     <div className="editor editor-visible">
       <Card type={cardType} editable={!shareMode} zoomable={false} startText={startText} messageText={messageText} signatureText={signatureText} />
       <div className="editor-controls">
-        <Button label="Save Image" onClick={
+        <Button label={saveButtonLabel} onClick={
           () => {
+            setSaveButtonLabel("Saving...");
             const cardElement = document.querySelector(".card");
             if (cardElement instanceof HTMLElement) {
-              saveImage(cardElement);
+              saveImage(cardElement, (success) => {
+                if (success) {
+                  setSaveButtonLabel("Saved!");
+                  setTimeout(() => {
+                    setSaveButtonLabel(SAVE_LABEL);
+                  }, LABEL_DELAY);
+                } else {
+                  setSaveButtonLabel(SAVE_LABEL);
+                }
+              });
             }
           }
         } />
-        <Button label="Copy Link" onClick={() => {
+        <Button label={linkButtonLabel} onClick={() => {
           const cardElement = document.querySelector(".card");
           if (cardElement instanceof HTMLElement) {
             // Get start text, message text, and signature text
@@ -61,6 +87,10 @@ export default function Editor({ cardType, shareMode: shareMode = false, startTe
             const messageText = cardElement.querySelector(".card-message")?.textContent ?? "";
             const signatureText = cardElement.querySelector(".card-signature")?.textContent ?? "";
             copyLink(cardType, startText, messageText, signatureText);
+            setLinkButtonLabel("Link Copied!");
+            setTimeout(() => {
+              setLinkButtonLabel(LINK_LABEL);
+            }, LABEL_DELAY);
           }
         }} />
         {shareMode && (

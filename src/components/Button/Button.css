@@ -11,7 +11,7 @@
 	font-size: 22px;
     cursor: pointer;
     outline: inherit;
-	min-width: 190px;
+	min-width: 200px;
 	transition: transform 0.05s ease-in-out;
 }
 

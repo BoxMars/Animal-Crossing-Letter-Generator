@@ -22746,7 +22746,7 @@ var parseBackgroundColor = function(context, element, backgroundColorOverride) {
   var defaultBackgroundColor = typeof backgroundColorOverride === "string" ? parseColor(context, backgroundColorOverride) : backgroundColorOverride === null ? COLORS.TRANSPARENT : 4294967295;
   return element === ownerDocument.documentElement ? isTransparent(documentBackgroundColor) ? isTransparent(bodyBackgroundColor) ? defaultBackgroundColor : bodyBackgroundColor : documentBackgroundColor : defaultBackgroundColor;
 };
-function saveImage(cardElement) {
+function saveImage(cardElement, callback) {
   console.log("Saving image...");
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1);
   html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
@@ -22764,6 +22764,14 @@ function saveImage(cardElement) {
     link.href = canvas.toDataURL("image/png");
     link.download = `animal-crossing-card.png`;
     link.click();
+    if (callback) {
+      callback(true);
+    }
+  }).catch((err) => {
+    console.error("Failed to save image", err);
+    if (callback) {
+      callback(false);
+    }
   });
 }
 function copyLink(cardType, startText, messageText, signatureText) {
@@ -22775,23 +22783,42 @@ function copyLink(cardType, startText, messageText, signatureText) {
   });
 }
 function Editor({ cardType, shareMode = false, startText, messageText, signatureText }) {
+  const LABEL_DELAY = 1500;
+  const SAVE_LABEL = "Save Image";
+  const LINK_LABEL = "Copy Link";
   const navigate = useNavigate();
+  const [saveButtonLabel, setSaveButtonLabel] = reactExports.useState(SAVE_LABEL);
+  const [linkButtonLabel, setLinkButtonLabel] = reactExports.useState(LINK_LABEL);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor editor-visible", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { type: cardType, editable: !shareMode, zoomable: false, startText, messageText, signatureText }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-controls", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Save Image", onClick: () => {
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: saveButtonLabel, onClick: () => {
+        setSaveButtonLabel("Saving...");
         const cardElement = document.querySelector(".card");
         if (cardElement instanceof HTMLElement) {
-          saveImage(cardElement);
+          saveImage(cardElement, (success) => {
+            if (success) {
+              setSaveButtonLabel("Saved!");
+              setTimeout(() => {
+                setSaveButtonLabel(SAVE_LABEL);
+              }, LABEL_DELAY);
+            } else {
+              setSaveButtonLabel(SAVE_LABEL);
+            }
+          });
         }
       } }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Copy Link", onClick: () => {
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: linkButtonLabel, onClick: () => {
         const cardElement = document.querySelector(".card");
         if (cardElement instanceof HTMLElement) {
           const startText2 = cardElement.querySelector(".card-start")?.textContent ?? "";
           const messageText2 = cardElement.querySelector(".card-message")?.textContent ?? "";
           const signatureText2 = cardElement.querySelector(".card-signature")?.textContent ?? "";
           copyLink(cardType, startText2, messageText2, signatureText2);
+          setLinkButtonLabel("Link Copied!");
+          setTimeout(() => {
+            setLinkButtonLabel(LINK_LABEL);
+          }, LABEL_DELAY);
         }
       } }),
       shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Make Your Own", onClick: () => {
@@ -22877,4 +22904,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DDvAguVb.js.map
+//# sourceMappingURL=index-CUgePgkd.js.map
