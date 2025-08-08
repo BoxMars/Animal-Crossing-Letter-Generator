@@ -51,6 +51,7 @@
 	padding: var(--card-background-padding);
 	padding-top: calc(var(--card-background-padding) / 3);
 	padding-bottom: calc(var(--card-background-padding) / 3);
+	z-index: 2;
 }
 
 .card-start, .card-signature {

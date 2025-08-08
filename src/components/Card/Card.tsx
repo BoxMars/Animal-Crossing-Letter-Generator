@@ -45,10 +45,12 @@ export default function Card({
     if (startRef.current) {
       startRef.current.addEventListener("input", () => {
         setStartText(startRef.current?.textContent || startDisplayText);
-        console.log("Start text updated:", startRef.current?.textContent);
       });
     }
     if (messageRef.current) {
+      if (editable) {
+        messageRef.current.focus();
+      }
       messageRef.current.addEventListener("input", () => {
         setMessageText(messageRef.current?.textContent || messageDisplayText);
       });
@@ -58,7 +60,7 @@ export default function Card({
         setSignatureText(signatureRef.current?.textContent || signatureDisplayText);
       });
     }
-  }, [startRef, messageRef, signatureRef, startDisplayText, messageDisplayText, signatureDisplayText]);
+  }, [editable, startRef, messageRef, signatureRef, startDisplayText, messageDisplayText, signatureDisplayText]);
 
   return (
     <div
