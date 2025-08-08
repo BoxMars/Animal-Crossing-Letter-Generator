@@ -100,7 +100,9 @@ export default function Editor({ cardType, shareMode: shareMode = false, startTe
         )}
         {!shareMode && (
           <Button label="Share in a Bottle" onClick={() => {
-            confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!");
+            if (confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!")) {
+              navigate("/sent-bottle");
+            }
           }} />
         )}
       </div>

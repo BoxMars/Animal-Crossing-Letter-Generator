@@ -32,7 +32,7 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
   );
 }
 
-export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string }) {
+export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string | number}) {
   const navigate = useNavigate();
   return (
     <div className="dialogue-page" onClick={() => {
@@ -42,7 +42,11 @@ export function DialogueOverlay({ name, message, linkTo }: { name: string; messa
         dialoguePage.style.opacity = "0";
         setTimeout(() => {
           if (linkTo !== undefined) {
-            navigate(linkTo);
+            if (typeof linkTo === "string") {
+              navigate(linkTo);
+            } else if (typeof linkTo === "number") {
+              navigate(linkTo as number);
+            }
           }
         }, 250);
       }

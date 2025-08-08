@@ -14227,7 +14227,11 @@ function DialogueOverlay({ name, message, linkTo }) {
       dialoguePage.style.opacity = "0";
       setTimeout(() => {
         if (linkTo !== void 0) {
-          navigate(linkTo);
+          if (typeof linkTo === "string") {
+            navigate(linkTo);
+          } else if (typeof linkTo === "number") {
+            navigate(linkTo);
+          }
         }
       }, 250);
     }
@@ -22825,7 +22829,9 @@ function Editor({ cardType, shareMode = false, startText, messageText, signature
         navigate("/");
       } }),
       !shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Share in a Bottle", onClick: () => {
-        confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!");
+        if (confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!")) {
+          navigate("/sent-bottle");
+        }
       } })
     ] })
   ] });
@@ -22866,6 +22872,16 @@ function FoundBottle() {
     }
   );
 }
+function SentBottle() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    DialogueOverlay,
+    {
+      name: "Tom Nook",
+      message: "Your bottle has been sent away! Hopefully it will reach someone special across the world!",
+      linkTo: "/library"
+    }
+  );
+}
 function Bottle({ visible = true }) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -22879,7 +22895,7 @@ function Waves({ type = "front" }) {
   reactExports.useEffect(() => {
     if (location.pathname === "/library") {
       setWaveHeight("gone");
-    } else if (location.pathname === "/found-bottle") {
+    } else if (location.pathname === "/found-bottle" || location.pathname === "/sent-bottle") {
       setWaveHeight("high");
     } else {
       setWaveHeight("low");
@@ -22899,9 +22915,10 @@ ReactDOM.createRoot(root).render(
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "library", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Library, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "editor", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "found-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FoundBottle, {}) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "found-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FoundBottle, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "sent-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SentBottle, {}) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-CUgePgkd.js.map
+//# sourceMappingURL=index-BRPRDqgz.js.map

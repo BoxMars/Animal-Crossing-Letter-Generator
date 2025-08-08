@@ -11,7 +11,7 @@ export default function Waves({type = "front"} : {type?: "front" | "back"}) {
   useEffect(() => {
     if (location.pathname === "/library") {
       setWaveHeight("gone");
-    } else if (location.pathname === "/found-bottle") {
+    } else if (location.pathname === "/found-bottle" || location.pathname === "/sent-bottle") {
       setWaveHeight("high");
     } else {
       setWaveHeight("low");
