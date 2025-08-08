@@ -418,7 +418,7 @@
 	--card-signature-color: var(--card-start-color);
 }
 
-@media screen and (max-width: 786px) and (orientation: portrait) {
+@media screen and (max-width: 700px) and (orientation: portrait) {
 	.card-zoomable:hover {
 		transform: none;
 	}

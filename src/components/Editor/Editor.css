@@ -32,7 +32,7 @@
 	justify-content: space-evenly;
 }
 
-@media screen and (max-width: 786px) and (orientation: portrait) {
+@media screen and (max-width: 700px) and (orientation: portrait) {
   .editor {
     --card-scale: 0.3;
   }

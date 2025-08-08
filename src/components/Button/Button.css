@@ -20,7 +20,7 @@
 	transition: transform 0.075s ease-in-out;
 }
 
-@media screen and (max-width: 786px) and (orientation: portrait) {
+@media screen and (max-width: 700px) and (orientation: portrait) {
 	.blob-button {
 		font-size: 18px;
 		min-width: 150px;
@@ -28,7 +28,7 @@
 	}
 }
 
-@media screen and (max-width: 786px) and (orientation: portrait) {
+@media screen and (max-width: 700px) and (orientation: portrait) {
 	.card-zoomable:hover {
 		transform: none;
 	}

@@ -35,7 +35,7 @@
   transition: bottom 0.65s ease-in-out;
 }
 
-@media screen and (max-width: 786px) and (orientation: portrait) {
+@media screen and (max-width: 700px) and (orientation: portrait) {
   .bottle {
     --bottle-scale: 0.6;
   }
