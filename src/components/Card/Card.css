@@ -54,7 +54,8 @@
 	z-index: 2;
 }
 
-.card-start, .card-signature {
+.card-start,
+.card-signature {
 	line-height: 1.2;
 	padding: 2.1%;
 	padding-top: 0.8%;
@@ -415,4 +416,10 @@
 	--card-start-color: #ffcf72;
 	--card-message-color: #ffe9d6;
 	--card-signature-color: var(--card-start-color);
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.card-zoomable:hover {
+		transform: none;
+	}
 }

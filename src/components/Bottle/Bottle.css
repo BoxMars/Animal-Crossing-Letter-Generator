@@ -1,8 +1,12 @@
+:root {
+  --bottle-scale: 0.8;
+}
+
 .bottle {
   position: fixed;
   bottom: -45px;
   right: 30px;
-  transform: scale(0.8) rotate(18deg) translateX(-50%);
+  transform: scale(var(--bottle-scale)) rotate(18deg) translateX(-50%);
   width: 72px;
   height: 101px;
   background-image: url("./egg-bottle-icon.png");
@@ -22,11 +26,17 @@
   }
   50% {
     margin-bottom: 50px;
-    transform: scale(0.8) rotate(14deg) translateX(-50%);
+    transform: scale(var(--bottle-scale)) rotate(14deg) translateX(-50%);
   }
 }
 
 .bottle-hide {
   bottom: -200px;
   transition: bottom 0.65s ease-in-out;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+  .bottle {
+    --bottle-scale: 0.6;
+  }
 }

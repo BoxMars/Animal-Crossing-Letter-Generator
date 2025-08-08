@@ -251,7 +251,8 @@
 	z-index: 2;
 }
 
-.card-start, .card-signature {
+.card-start,
+.card-signature {
 	line-height: 1.2;
 	padding: 2.1%;
 	padding-top: 0.8%;
@@ -612,6 +613,12 @@
 	--card-start-color: #ffcf72;
 	--card-message-color: #ffe9d6;
 	--card-signature-color: var(--card-start-color);
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.card-zoomable:hover {
+		transform: none;
+	}
 }.canvas-background-container {
   box-sizing: border-box;
 }
@@ -642,6 +649,20 @@
   opacity: 0.6;
   text-align: center;
   z-index: 4;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+  .footer {
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    width: 100%;
+    margin-top: 10px;
+    text-align: left !important;
+  }
 }.editor  {
   width: 100%;
   height: 100%;
@@ -796,11 +817,15 @@ html {
   margin-top: calc(-100vh + 135px);
   transition: margin-top 0.75s ease-in-out;
   z-index: -2 !important;
-}.bottle {
+}:root {
+  --bottle-scale: 0.8;
+}
+
+.bottle {
   position: fixed;
   bottom: -45px;
   right: 30px;
-  transform: scale(0.8) rotate(18deg) translateX(-50%);
+  transform: scale(var(--bottle-scale)) rotate(18deg) translateX(-50%);
   width: 72px;
   height: 101px;
   background-image: url("/assets/egg-bottle-icon-DzQNdsXs.png");
@@ -820,11 +845,17 @@ html {
   }
   50% {
     margin-bottom: 50px;
-    transform: scale(0.8) rotate(14deg) translateX(-50%);
+    transform: scale(var(--bottle-scale)) rotate(14deg) translateX(-50%);
   }
 }
 
 .bottle-hide {
   bottom: -200px;
   transition: bottom 0.65s ease-in-out;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+  .bottle {
+    --bottle-scale: 0.6;
+  }
 }
