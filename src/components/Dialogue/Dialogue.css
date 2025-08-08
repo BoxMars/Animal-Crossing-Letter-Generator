@@ -160,3 +160,17 @@
 		opacity: 1;
 	}
 }
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.dialogue {
+		min-height: 460px;
+	}
+
+	.dialogue-character {
+		font-size: 3rem;
+	}
+
+	.dialogue-text {
+		font-size: 3.8rem;
+	}
+}

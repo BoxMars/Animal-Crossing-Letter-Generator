@@ -159,6 +159,20 @@
 		transform: translateY(50%) translateX(-50%) scale(0.9);
 		opacity: 1;
 	}
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.dialogue {
+		min-height: 460px;
+	}
+
+	.dialogue-character {
+		font-size: 3rem;
+	}
+
+	.dialogue-text {
+		font-size: 3.8rem;
+	}
 }.mailbox-holder {
 	height: 100%;
 	width: 100%;
@@ -175,6 +189,12 @@
 	flex-wrap: wrap;
 	align-content: flex-start;
 	justify-content: space-evenly;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.mailbox {
+		--card-scale: 0.3;
+	}
 }.card-tilt:nth-child(even) {
 	transform: rotate(-2deg);
 
@@ -649,22 +669,30 @@
 	margin-top: 10px;
 	display: flex;
 	width: 800px;
+  max-width: 100%;
+  flex-wrap: wrap;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+  .editor {
+    --card-scale: 0.3;
+  }
 }.blob-button {
-    background: #00c7ba;
-    color: white;
-    border: none;
-    padding: 0;
+	background: #00c7ba;
+	color: white;
+	border: none;
+	padding: 0;
 	padding-left: 25px;
 	padding-right: 25px;
 	padding-top: 1px;
 	border-radius: 50px;
-    font-family: "Seurat Pro B", sans-serif;
+	font-family: "Seurat Pro B", sans-serif;
 	font-size: 22px;
-    cursor: pointer;
-    outline: inherit;
+	cursor: pointer;
+	outline: inherit;
 	min-width: 200px;
 	transition: transform 0.05s ease-in-out;
 }
@@ -672,6 +700,14 @@
 .blob-button:hover {
 	transform: scale(1.1);
 	transition: transform 0.075s ease-in-out;
+}
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.blob-button {
+		font-size: 18px;
+		min-width: 150px;
+		margin-bottom: 10px;
+	}
 }@font-face {
   font-family: "Seurat Pro B";
   src: url("../fonts/FOT-Seurat_Pro_B.otf") format("opentype");

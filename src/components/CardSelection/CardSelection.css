@@ -15,3 +15,9 @@
 	align-content: flex-start;
 	justify-content: space-evenly;
 }
+
+@media screen and (max-width: 786px) and (orientation: portrait) {
+	.mailbox {
+		--card-scale: 0.3;
+	}
+}
