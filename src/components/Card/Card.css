@@ -422,4 +422,8 @@
 	.card-zoomable:hover {
 		transform: none;
 	}
+
+	.card:hover .card-label {
+		opacity: 0;
+	}
 }

@@ -619,6 +619,10 @@
 	.card-zoomable:hover {
 		transform: none;
 	}
+
+	.card:hover .card-label {
+		opacity: 0;
+	}
 }.canvas-background-container {
   box-sizing: border-box;
 }
