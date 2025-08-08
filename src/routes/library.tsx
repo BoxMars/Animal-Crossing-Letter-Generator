@@ -1,5 +1,5 @@
 // import type { Route } from "./+types/library";
-import Mailbox from "../components/Mailbox/Mailbox";
+import CardSelection from "../components/CardSelection/CardSelection";
 
 // export function meta({ }: Route.MetaArgs) {
 //   return [
@@ -9,6 +9,6 @@ import Mailbox from "../components/Mailbox/Mailbox";
 
 export default function Library() {
   return (
-	<Mailbox />
+	<CardSelection />
   );
 }
