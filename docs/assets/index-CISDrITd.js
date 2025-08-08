@@ -14502,7 +14502,7 @@ function CardSelection() {
 }
 function Footer() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("footer", { className: "footer", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", style: { textAlign: "left" }, children: "Privacy Policy" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", style: { textAlign: "left" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/privacy-policy", children: "Privacy Policy" }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", children: "Made with ❤️ by Idrees" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "footer-text", style: { textAlign: "right" }, children: [
       "Animal Crossing, characters, and images are property of Nintendo.",
@@ -22920,6 +22920,17 @@ function SentBottle() {
     }
   );
 }
+function PrivacyPolicy() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "20px", fontFamily: "Arial, sans-serif" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Privacy Policy" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: 'acmail.idreesinc.com (and its related aliases) includes external scripts from Disqus (to enable comments), Microsoft Clarity, and Google Analytics (to monitor users who visit the site). These services use cookies and other methods to track users, though I do not provide any personally identifying information beyond what the services obtain by default. If you wish to opt out of this tracking, enable "Do Not Track" on your browser for Disqus and you can use this extension for Google Analytics. Even better, I would highly recommend installing uBlock Origin to not just prevent tracking on my website but also to prevent even more invasive tracking and advertisements on other websites.' }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "If you wish for me to delete the personally identifying information recorded by the services used on my website, please email me (Idrees Hassan) and I will use the respective service's GDPR tools." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "acmail.idreesinc.com is not affiliated with or endorsed by Nintendo. Animal Crossing, characters, and images are property of Nintendo." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Any messages submitted through the bottle sharing feature are provided with explicit consent from the user to be licensed under the license of this applications source code if I wish, and you give Idrees Hassan the rights to use, modify, and distribute the messages for any purpose. This means that others are free to use, modify, and distribute the messages. You are responsible for not including any personally identifying information in your messages." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Messages submitted include any information you provide, such as your username, message content, and any other metadata associated with the message." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "By using this website, you consent to the collection and use of your information as outlined in this Privacy Policy." })
+  ] });
+}
 function Bottle({ visible = true }) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -22954,9 +22965,10 @@ ReactDOM.createRoot(root).render(
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "editor", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "found-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FoundBottle, {}) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "sent-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SentBottle, {}) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "sent-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SentBottle, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "privacy-policy", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivacyPolicy, {}) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-BQd3nLby.js.map
+//# sourceMappingURL=index-CISDrITd.js.map

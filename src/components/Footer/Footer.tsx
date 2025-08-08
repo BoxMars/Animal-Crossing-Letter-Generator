@@ -1,10 +1,11 @@
 import "./Footer.css";
+import { Link } from "react-router";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-text" style={{ textAlign: "left" }}>
-        Privacy Policy
+        <Link to="/privacy-policy">Privacy Policy</Link>
       </div>
       <div className="footer-text">
         Made with ❤️ by Idrees

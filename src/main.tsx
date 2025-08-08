@@ -5,6 +5,7 @@ import Library from "./routes/library";
 import Editor from "./routes/editor";
 import FoundBottle from "./routes/found-bottle";
 import SentBottle from "./routes/sent-bottle";
+import PrivacyPolicy from "./routes/privacy-policy";
 import "./main.css";
 import Waves from "./components/Waves/Waves";
 
@@ -20,6 +21,7 @@ ReactDOM.createRoot(root!).render(
       <Route path="share" element={<Editor shareMode />} />
       <Route path="found-bottle" element={<FoundBottle />} />
       <Route path="sent-bottle" element={<SentBottle />} />
+      <Route path="privacy-policy" element={<PrivacyPolicy />} />
     </Routes>
     <Waves type="front"/>
   </HashRouter>
