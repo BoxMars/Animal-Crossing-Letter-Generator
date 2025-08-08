@@ -14201,6 +14201,24 @@ function useViewTransitionState(to, { relative } = {}) {
   let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
+function DialogueOverlay({ name, message, linkTo }) {
+  const navigate = useNavigate();
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "dialogue-page", onClick: () => {
+    const dialoguePage = document.querySelector(".dialogue-page");
+    if (dialoguePage instanceof HTMLElement) {
+      dialoguePage.style.opacity = "0";
+      setTimeout(() => {
+        if (linkTo !== void 0) {
+          if (typeof linkTo === "string") {
+            navigate(linkTo);
+          } else if (typeof linkTo === "number") {
+            navigate(linkTo);
+          }
+        }
+      }, 250);
+    }
+  }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Dialogue, { name, message }) });
+}
 function Dialogue({ name, message }) {
   const dialogue = reactExports.useRef(null);
   reactExports.useEffect(() => {
@@ -14211,6 +14229,7 @@ function Dialogue({ name, message }) {
         const bubbleWidth = dialogueElement.offsetWidth;
         if (bubbleWidth > pageWidth) {
           const scale = pageWidth / bubbleWidth * 0.9;
+          console.log(`Scaling dialogue to ${scale}`);
           dialogueElement.style.transform = `scale(${scale})`;
         } else {
           dialogueElement.style.transform = "";
@@ -14239,24 +14258,6 @@ function Dialogue({ name, message }) {
       /* @__PURE__ */ jsxRuntimeExports.jsx("feComposite", { in: "SourceGraphic", in2: "goo", operator: "atop" })
     ] }) }) })
   ] });
-}
-function DialogueOverlay({ name, message, linkTo }) {
-  const navigate = useNavigate();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "dialogue-page", onClick: () => {
-    const dialoguePage = document.querySelector(".dialogue-page");
-    if (dialoguePage instanceof HTMLElement) {
-      dialoguePage.style.opacity = "0";
-      setTimeout(() => {
-        if (linkTo !== void 0) {
-          if (typeof linkTo === "string") {
-            navigate(linkTo);
-          } else if (typeof linkTo === "number") {
-            navigate(linkTo);
-          }
-        }
-      }, 250);
-    }
-  }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Dialogue, { name, message }) });
 }
 function Introduction() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -22958,4 +22959,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-ClOK9w8d.js.map
+//# sourceMappingURL=index-DewQFqVT.js.map

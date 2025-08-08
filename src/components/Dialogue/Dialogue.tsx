@@ -2,6 +2,30 @@ import "./Dialogue.css";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 
+export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string | number}) {
+  const navigate = useNavigate();
+
+  return (
+    <div className="dialogue-page" onClick={() => {
+      const dialoguePage = document.querySelector(".dialogue-page");
+      if (dialoguePage instanceof HTMLElement) {
+        dialoguePage.style.opacity = "0";
+        setTimeout(() => {
+          if (linkTo !== undefined) {
+            if (typeof linkTo === "string") {
+              navigate(linkTo);
+            } else if (typeof linkTo === "number") {
+              navigate(linkTo as number);
+            }
+          }
+        }, 250);
+      }
+    }}>
+      <Dialogue name={name} message={message} />
+    </div>
+  );
+}
+
 export function Dialogue({ name, message }: { name: string; message: string }) {
   const dialogue = useRef<HTMLDivElement>(null);
 
@@ -13,6 +37,7 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
         const bubbleWidth = dialogueElement.offsetWidth;
         if (bubbleWidth > pageWidth) {
           const scale = (pageWidth / bubbleWidth) * 0.9;
+          console.log(`Scaling dialogue to ${scale}`);
           dialogueElement.style.transform = `scale(${scale})`;
         } else {
           dialogueElement.style.transform = "";
@@ -53,31 +78,6 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
           </filter>
         </defs>
       </svg>
-    </div>
-  );
-}
-
-export function DialogueOverlay({ name, message, linkTo }: { name: string; message: string, linkTo?: string | number}) {
-  const navigate = useNavigate();
-
-  return (
-    <div className="dialogue-page" onClick={() => {
-      // Fade out over the course of 0.5 seconds
-      const dialoguePage = document.querySelector(".dialogue-page");
-      if (dialoguePage instanceof HTMLElement) {
-        dialoguePage.style.opacity = "0";
-        setTimeout(() => {
-          if (linkTo !== undefined) {
-            if (typeof linkTo === "string") {
-              navigate(linkTo);
-            } else if (typeof linkTo === "number") {
-              navigate(linkTo as number);
-            }
-          }
-        }, 250);
-      }
-    }}>
-      <Dialogue name={name} message={message} />
     </div>
   );
 }
