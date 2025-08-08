@@ -48,7 +48,7 @@ function copyLink(cardType: CardName, startText: string, messageText: string, si
 export default function Editor({ cardType, shareMode: shareMode = false, startText, messageText, signatureText }: { cardType: CardName, shareMode?: boolean, startText?: string, messageText?: string, signatureText?: string }) {
   const navigate = useNavigate();
   return (
-    <div className="editor">
+    <div className="editor editor-visible">
       <Card type={cardType} editable={!shareMode} zoomable={false} startText={startText} messageText={messageText} signatureText={signatureText} />
       <div className="editor-controls">
         <Button label="Save Image" onClick={

@@ -3,12 +3,6 @@ import Editor from "../components/Editor/Editor";
 import { decode } from "../components/Editor/editorFunctions";
 import { CardName } from "../components/Card/cardConstants";
 
-// export function meta({ }: Route.MetaArgs) {
-//   return [
-//     { title: "Animal Crossing Letter Viewer" },
-//   ];
-// }
-
 export default function Share() {
   const [params] = useSearchParams();
   let cardType: CardName = CardName.Airmail;

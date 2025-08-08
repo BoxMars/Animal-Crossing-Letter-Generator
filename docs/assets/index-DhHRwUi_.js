@@ -22770,7 +22770,7 @@ function copyLink(cardType, startText, messageText, signatureText) {
 }
 function Editor({ cardType, shareMode = false, startText, messageText, signatureText }) {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor editor-visible", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { type: cardType, editable: !shareMode, zoomable: false, startText, messageText, signatureText }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-controls", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Save Image", onClick: () => {
@@ -22813,18 +22813,38 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
+function Social() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    DialogueOverlay,
+    {
+      name: "Tom Nook",
+      message: "Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!",
+      linkTo: "/share?card=Shooting-Stars&start=CIUwhgTgBAaglgGwWA5iCAaIA&message=KINwpgTgngLgFgSwHYHMAECDOaUHtnoy5oBGYauA1gIZQCEQA&signature=GIJw9gtgBAKpUDkxgNZA"
+    }
+  );
+}
 function Bottle({ visible = true }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: () => alert("Bottle clicked!") });
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/social");
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: handleClick });
 }
 function Waves({ type = "front" }) {
   const location = useLocation();
-  const [wavesVisible, setWavesVisible] = reactExports.useState(true);
+  const [waveHeight, setWaveHeight] = reactExports.useState("low");
   reactExports.useEffect(() => {
-    setWavesVisible(location.pathname !== "/library");
+    if (location.pathname === "/library") {
+      setWaveHeight("gone");
+    } else if (location.pathname === "/social") {
+      setWaveHeight("high");
+    } else {
+      setWaveHeight("low");
+    }
   }, [location.pathname]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `waves-container`, style: type === "front" ? { zIndex: 3 } : {}, children: [
-    type === "front" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Bottle, { visible: wavesVisible }) : null,
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${!wavesVisible ? " waves-hide" : ""}` })
+    type === "front" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Bottle, { visible: waveHeight === "low" }) : null,
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${waveHeight === "gone" ? " waves-hide" : ""} ${waveHeight === "high" ? "waves-flood" : ""}` })
   ] });
 }
 const root = document.getElementById("root");
@@ -22835,9 +22855,10 @@ ReactDOM.createRoot(root).render(
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Introduction, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "library", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Library, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "editor", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, {}) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "social", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Social, {}) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DZ-L7216.js.map
+//# sourceMappingURL=index-DhHRwUi_.js.map

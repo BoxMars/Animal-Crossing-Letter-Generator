@@ -7,15 +7,21 @@ export default function Waves({type = "front"} : {type?: "front" | "back"}) {
   const location = useLocation();
 
   // Hide waves on the library page
-  const [wavesVisible, setWavesVisible] = useState(true);
+  const [waveHeight, setWaveHeight] = useState("low");
   useEffect(() => {
-    setWavesVisible(location.pathname !== "/library");
+    if (location.pathname === "/library") {
+      setWaveHeight("gone");
+    } else if (location.pathname === "/social") {
+      setWaveHeight("high");
+    } else {
+      setWaveHeight("low");
+    }
   }, [location.pathname]);
 
   return (
     <div className={`waves-container`} style={type === "front" ? {zIndex: 3} : {}}>
-      {type === "front" ? <Bottle visible={wavesVisible} /> : null}
-      <div className={`waves ${type}-waves ${!wavesVisible ? " waves-hide" : ""}`}></div>
+      {type === "front" ? <Bottle visible={waveHeight === "low"} /> : null}
+      <div className={`waves ${type}-waves ${waveHeight === "gone" ? " waves-hide" : ""} ${waveHeight === "high" ? "waves-flood" : ""}`}></div>
     </div>
   );
 }

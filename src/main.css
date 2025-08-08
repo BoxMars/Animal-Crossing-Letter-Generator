@@ -15,6 +15,7 @@ body,
 html {
   background: linear-gradient(to bottom, #a8e063, rgb(255, 236, 185), #A1FFCE, #0ED2F7);
   background: linear-gradient(to top, rgb(255, 236, 185), #A1FFCE, #0ED2F7);
+  background: linear-gradient(to top, rgb(255, 236, 185), #A1FFCE, #0ED2F7);
   background-attachment: fixed;
 }
 
