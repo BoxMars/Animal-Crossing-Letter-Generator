@@ -7,7 +7,7 @@ import { DialogueOverlay } from "../components/Dialogue/Dialogue";
 //   ];
 // }
 
-export default function Home() {
+export default function Introduction() {
   return (
     <DialogueOverlay
       name="Tom Nook"

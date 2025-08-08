@@ -14233,7 +14233,7 @@ function DialogueOverlay({ name, message, linkTo }) {
     }
   }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Dialogue, { name, message }) });
 }
-function Home() {
+function Introduction() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     DialogueOverlay,
     {
@@ -22813,20 +22813,20 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
-function Waves({ type = "both" }) {
-  if (type === "front") {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "waves-container", style: { zIndex: 3 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "waves front-waves" }) });
-  } else if (type === "back") {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "waves-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "waves back-waves" }) });
-  }
-  return null;
+function Waves({ type = "front" }) {
+  const location = useLocation();
+  const [wavesVisible, setWavesVisible] = reactExports.useState(true);
+  reactExports.useEffect(() => {
+    setWavesVisible(location.pathname !== "/library");
+  }, [location.pathname]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves-container`, style: type === "front" ? { zIndex: 3 } : {}, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${!wavesVisible ? " waves-hide" : ""}` }) });
 }
 const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   /* @__PURE__ */ jsxRuntimeExports.jsxs(HashRouter, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "back" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Home, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Introduction, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "library", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Library, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "editor", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) })
@@ -22834,4 +22834,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DO0y9pqs.js.map
+//# sourceMappingURL=index-D30W-icu.js.map
