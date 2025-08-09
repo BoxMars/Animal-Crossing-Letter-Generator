@@ -7,6 +7,8 @@ import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_BOTTLE_API_URL;
+
 function saveImage(cardElement: HTMLElement, callback?: (success: boolean) => void) {
   console.log("Saving image...");
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1)
@@ -45,6 +47,29 @@ function copyLink(cardType: CardName, startText: string, messageText: string, si
     console.log("Link copied to clipboard");
   }).catch(err => {
     console.error("Failed to copy link to clipboard", err);
+  });
+}
+
+function shareBottle(cardType: CardName, startText: string, messageText: string, signatureText: string) {
+  const time = Date.now();
+  const link = generateLink(cardType, startText, messageText, signatureText);
+  const content = `\`\`\`json\n{\n  "time": ${time},\n  "start": "${startText}",\n  "message": "${messageText}",\n  "signature": "${signatureText}"\n}\n\`\`\`\n${link}`;
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "content": content
+    })
+  }).then(response => {
+    if (response.ok) {
+      console.log("Bottle shared successfully");
+    } else {
+      console.error("Failed to share bottle", response.statusText);
+    }
+  }).catch(err => {
+    console.error("Error sharing bottle", err);
   });
 }
 
@@ -101,7 +126,14 @@ export default function Editor({ cardType, shareMode: shareMode = false, startTe
         {!shareMode && (
           <Button label="Share in a Bottle" onClick={() => {
             if (confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!")) {
-              navigate("/sent-bottle");
+              const cardElement = document.querySelector(".card");
+              if (cardElement instanceof HTMLElement) {
+                const startText = cardElement.querySelector(".card-start")?.textContent ?? "";
+                const messageText = cardElement.querySelector(".card-message")?.textContent ?? "";
+                const signatureText = cardElement.querySelector(".card-signature")?.textContent ?? "";
+                shareBottle(cardType, startText, messageText, signatureText);
+                navigate("/sent-bottle");
+              }
             }
           }} />
         )}

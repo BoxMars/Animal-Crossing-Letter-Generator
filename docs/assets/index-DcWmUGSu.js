@@ -22788,6 +22788,7 @@ var parseBackgroundColor = function(context, element, backgroundColorOverride) {
   var defaultBackgroundColor = typeof backgroundColorOverride === "string" ? parseColor(context, backgroundColorOverride) : backgroundColorOverride === null ? COLORS.TRANSPARENT : 4294967295;
   return element === ownerDocument.documentElement ? isTransparent(documentBackgroundColor) ? isTransparent(bodyBackgroundColor) ? defaultBackgroundColor : bodyBackgroundColor : documentBackgroundColor : defaultBackgroundColor;
 };
+const API_URL = "https://qtdnsrzb09.execute-api.us-east-1.amazonaws.com/bottle";
 function saveImage(cardElement, callback) {
   console.log("Saving image...");
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1);
@@ -22822,6 +22823,36 @@ function copyLink(cardType, startText, messageText, signatureText) {
     console.log("Link copied to clipboard");
   }).catch((err) => {
     console.error("Failed to copy link to clipboard", err);
+  });
+}
+function shareBottle(cardType, startText, messageText, signatureText) {
+  const time2 = Date.now();
+  const link = generateLink(cardType, startText, messageText, signatureText);
+  const content2 = `\`\`\`json
+{
+  "time": ${time2},
+  "start": "${startText}",
+  "message": "${messageText}",
+  "signature": "${signatureText}"
+}
+\`\`\`
+${link}`;
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "content": content2
+    })
+  }).then((response) => {
+    if (response.ok) {
+      console.log("Bottle shared successfully");
+    } else {
+      console.error("Failed to share bottle", response.statusText);
+    }
+  }).catch((err) => {
+    console.error("Error sharing bottle", err);
   });
 }
 function Editor({ cardType, shareMode = false, startText, messageText, signatureText }) {
@@ -22868,7 +22899,14 @@ function Editor({ cardType, shareMode = false, startText, messageText, signature
       } }),
       !shareMode && /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { label: "Share in a Bottle", onClick: () => {
         if (confirm("Are you sure you want to share this letter? It will be available for anyone to see, so make sure it is appropriate and doesn't contain any personal information!")) {
-          navigate("/sent-bottle");
+          const cardElement = document.querySelector(".card");
+          if (cardElement instanceof HTMLElement) {
+            const startText2 = cardElement.querySelector(".card-start")?.textContent ?? "";
+            const messageText2 = cardElement.querySelector(".card-message")?.textContent ?? "";
+            const signatureText2 = cardElement.querySelector(".card-signature")?.textContent ?? "";
+            shareBottle(cardType, startText2, messageText2, signatureText2);
+            navigate("/sent-bottle");
+          }
         }
       } })
     ] })
@@ -22971,4 +23009,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-B8MnTTSN.js.map
+//# sourceMappingURL=index-DcWmUGSu.js.map
