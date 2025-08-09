@@ -34,6 +34,29 @@
 	will-change: transform;
 }
 
+.card-overlay-label {
+	position: absolute;
+	z-index: 2;
+	font-size: calc(50px * var(--card-scale));
+	color: #fff;
+	background-color: #f49802;
+	padding: calc(8px * var(--card-scale)) calc(40px * var(--card-scale));
+	padding-bottom: calc(4px * var(--card-scale));
+	border-radius: calc(30px * var(--card-scale));
+}
+
+.card-limited-label {
+	top: calc(20px * var(--card-scale));
+	left: calc(-10px * var(--card-scale));
+	transform: rotate(-4deg);
+}
+
+.card-until-label {
+	bottom: calc(20px * var(--card-scale));
+	right: calc(-10px * var(--card-scale));
+	transform: rotate(-4deg);
+}
+
 .card-zoomable {
 	transition-duration: 0.15s;
 	cursor: pointer;

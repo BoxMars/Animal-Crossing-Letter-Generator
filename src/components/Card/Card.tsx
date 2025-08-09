@@ -22,7 +22,8 @@ export default function Card({
   onClick,
   startText: startDisplayText = "Dear Villager,",
   messageText: messageDisplayText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
-  signatureText: signatureDisplayText = "From Tom Nook"
+  signatureText: signatureDisplayText = "From Tom Nook",
+  limitedDate
 }: {
   type?: CardName,
   tilt?: boolean,
@@ -31,7 +32,8 @@ export default function Card({
   onClick?: () => void,
   startText?: string,
   messageText?: string,
-  signatureText?: string
+  signatureText?: string,
+  limitedDate?: string
 }) {
   const startRef = useRef<HTMLDivElement>(null);
   const messageRef = useRef<HTMLDivElement>(null);
@@ -90,6 +92,8 @@ export default function Card({
           {type}
         </div>
       ) : null}
+      {limitedDate !== undefined ? <div className="card-overlay-label card-limited-label">Limited Availability</div> : null}
+      {limitedDate !== undefined ? <div className="card-overlay-label card-until-label">Until {limitedDate}</div> : null}
     </div>
   );
 }

@@ -14351,6 +14351,74 @@ const DEFAULT_STATIONARY = [
   CardName.DawningYear,
   CardName.Fireworks
 ];
+const HOLIDAYS = {
+  ValentinesDay: {
+    name: "Valentine's Day",
+    start: { month: 1, day: 16 },
+    end: { month: 2, day: 14 },
+    cards: []
+  },
+  BunnyDay: {
+    name: "Bunny Day",
+    start: { month: 3, day: 15 },
+    end: { month: 5, day: 10 },
+    cards: []
+  },
+  MothersDay: {
+    name: "Mother's Day",
+    start: { month: 5, day: 1 },
+    end: { month: 5, day: 31 },
+    cards: []
+  },
+  FathersDay: {
+    name: "Father's Day",
+    start: { month: 6, day: 1 },
+    end: { month: 6, day: 30 },
+    cards: []
+  },
+  Thanksgiving: {
+    name: "Thanksgiving",
+    start: { month: 9, day: 16 },
+    end: { month: 11, day: 30 },
+    cards: []
+  },
+  Halloween: {
+    name: "Halloween",
+    start: { month: 10, day: 1 },
+    end: { month: 10, day: 31 },
+    cards: []
+  },
+  Christmas: {
+    name: "Christmas",
+    start: { month: 11, day: 20 },
+    end: { month: 1, day: 10 },
+    cards: []
+  },
+  Spring: {
+    name: "Spring",
+    start: { month: 2, day: 25 },
+    end: { month: 5, day: 31 },
+    cards: []
+  },
+  Summer: {
+    name: "Summer",
+    start: { month: 5, day: 1 },
+    end: { month: 8, day: 31 },
+    cards: [CardName.FluffyClouds, CardName.Beach, CardName.Hibiscus]
+  },
+  Fall: {
+    name: "Fall",
+    start: { month: 9, day: 1 },
+    end: { month: 11, day: 25 },
+    cards: []
+  },
+  Winter: {
+    name: "Winter",
+    start: { month: 11, day: 26 },
+    end: { month: 2, day: 24 },
+    cards: []
+  }
+};
 function drawPathForRoundedRect(ctx, x, y, width, height, radius) {
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
@@ -14445,7 +14513,8 @@ function Card({
   onClick,
   startText: startDisplayText = "Dear Villager,",
   messageText: messageDisplayText = "Congratulations on your big move! We hope you enjoy your new island life. To celebrate this fresh start, we'd like to give you a gift that is sure to come in handy!",
-  signatureText: signatureDisplayText = "From Tom Nook"
+  signatureText: signatureDisplayText = "From Tom Nook",
+  limitedDate
 }) {
   const startRef = reactExports.useRef(null);
   const messageRef = reactExports.useRef(null);
@@ -14482,7 +14551,12 @@ function Card({
         /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-start", backgroundColor: backgroundColors[type], contentToWatch: startText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, ref: startRef, suppressContentEditableWarning: true, children: startDisplayText }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message-container", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { backgroundColor: backgroundColors[type], className: "card-message-inner-container", contentToWatch: messageText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-message", contentEditable: editable, ref: messageRef, suppressContentEditableWarning: true, children: messageDisplayText }) }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(CanvasBackground, { className: "card-signature", backgroundColor: backgroundColors[type], contentToWatch: signatureText, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { contentEditable: editable, ref: signatureRef, suppressContentEditableWarning: true, children: signatureDisplayText }) }),
-        zoomable ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-label", children: type }) : null
+        zoomable ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-label", children: type }) : null,
+        limitedDate !== void 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-overlay-label card-limited-label", children: "Limited Availability" }) : null,
+        limitedDate !== void 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "card-overlay-label card-until-label", children: [
+          "Until ",
+          limitedDate
+        ] }) : null
       ]
     },
     type
@@ -14499,6 +14573,33 @@ function CardSelection() {
     },
     type
   ));
+  const month = (/* @__PURE__ */ new Date()).getMonth() + 1;
+  const day = (/* @__PURE__ */ new Date()).getDate();
+  for (const holidayKey in HOLIDAYS) {
+    const holiday = HOLIDAYS[holidayKey];
+    const startMonth = holiday.start.month;
+    const startDay = holiday.start.day;
+    const endMonth = holiday.end.month;
+    const endDay = holiday.end.day;
+    const inRange = (month > startMonth || month === startMonth && day >= startDay) && (month < endMonth || month === endMonth && day <= endDay);
+    if (inRange) {
+      for (let i = holiday.cards.length - 1; i >= 0; i--) {
+        const type = holiday.cards[i];
+        cards.unshift(
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Card,
+            {
+              type,
+              tilt: true,
+              limitedDate: `${endMonth}/${endDay}`,
+              onClick: () => navigate(`/editor?card=${encodeURIComponent(type)}`)
+            },
+            type
+          )
+        );
+      }
+    }
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox-holder", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mailbox", children: cards }) });
 }
 function Footer() {
@@ -23023,4 +23124,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-Dj7OoirI.js.map
+//# sourceMappingURL=index-CTFaqvAj.js.map

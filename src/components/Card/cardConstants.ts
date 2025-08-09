@@ -84,19 +84,73 @@ export const DEFAULT_STATIONARY = [
   CardName.Fireworks
 ];
 
-export const Holidays = {
-  ValentinesDay: "Valentine's Day",
-  BunnyDay: "Bunny Day",
-  MothersDay: "Mother's Day",
-  FathersDay: "Father's Day",
-  Thanksgiving: "Thanksgiving",
-  Halloween: "Halloween",
-  Christmas: "Christmas",
-  NewYears: "New Year's",
-  Spring: "Spring",
-  Summer: "Summer",
-  Fall: "Fall",
-  Winter: "Winter",
+export const HOLIDAYS = {
+  ValentinesDay: {
+    name: "Valentine's Day",
+    start: { month: 1, day: 16 },
+    end: { month: 2, day: 14 },
+    cards: []
+  },
+  BunnyDay: {
+    name: "Bunny Day",
+    start: { month: 3, day: 15 },
+    end: { month: 5, day: 10 },
+    cards: []
+  },
+  MothersDay: {
+    name: "Mother's Day",
+    start: { month: 5, day: 1 },
+    end: { month: 5, day: 31 },
+    cards: []
+  },
+  FathersDay: {
+    name: "Father's Day",
+    start: { month: 6, day: 1 },
+    end: { month: 6, day: 30 },
+    cards: []
+  },
+  Thanksgiving: {
+    name: "Thanksgiving",
+    start: { month: 9, day: 16 },
+    end: { month: 11, day: 30 },
+    cards: []
+  },
+  Halloween: {
+    name: "Halloween",
+    start: { month: 10, day: 1 },
+    end: { month: 10, day: 31 },
+    cards: []
+  },
+  Christmas: {
+    name: "Christmas",
+    start: { month: 11, day: 20 },
+    end: { month: 1, day: 10 },
+    cards: []
+  },
+  Spring: {
+    name: "Spring",
+    start: { month: 2, day: 25 },
+    end: { month: 5, day: 31 },
+    cards: []
+  },
+  Summer: {
+    name: "Summer",
+    start: { month: 5, day: 1 },
+    end: { month: 8, day: 31 },
+    cards: [CardName.FluffyClouds, CardName.Beach, CardName.Hibiscus]
+  },
+  Fall: {
+    name: "Fall",
+    start: { month: 9, day: 1 },
+    end: { month: 11, day: 25 },
+    cards: []
+  },
+  Winter: {
+    name: "Winter",
+    start: { month: 11, day: 26 },
+    end: { month: 2, day: 24 },
+    cards: []
+  }
 }
 
-export type Holidays = typeof Holidays[keyof typeof Holidays];
+export type Holidays = typeof HOLIDAYS[keyof typeof HOLIDAYS];
