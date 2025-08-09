@@ -14380,7 +14380,8 @@ function drawCanvas(canvas, backgroundColor2) {
   const y = count * halfStep + padding;
   const width = canvas.width - count * halfStep * 2 - padding * 2;
   const height = canvas.height - count * halfStep * 2 - padding * 2;
-  const radius = Math.min(30, width / 2, height / 2) * scale;
+  const portrait = window.matchMedia("(orientation: portrait)").matches;
+  const radius = Math.min(30, width / 2, height / 2) * scale / (portrait ? 1.5 : 1);
   const colorTemplate = backgroundColor2.replace("rgb", "rgba").substring(0, backgroundColor2.length) + ", ";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawPathForRoundedRect(ctx, x, y, width, height, radius);
@@ -23021,4 +23022,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-B6cs5A7i.js.map
+//# sourceMappingURL=index-DCsi7leJ.js.map

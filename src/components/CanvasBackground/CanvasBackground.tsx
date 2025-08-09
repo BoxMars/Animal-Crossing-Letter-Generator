@@ -31,7 +31,9 @@ function drawCanvas(canvas: HTMLCanvasElement, backgroundColor: string) {
   const y = count * halfStep + padding;
   const width = canvas.width - count * halfStep * 2 - padding * 2;
   const height = canvas.height - count * halfStep * 2 - padding * 2;
-  const radius = Math.min(30, width / 2, height / 2) * scale;
+  // TODO: This is a terrible hack, fix in the future
+  const portrait = window.matchMedia("(orientation: portrait)").matches;
+  const radius = Math.min(30, width / 2, height / 2) * scale / (portrait ? 1.5 : 1);
   const colorTemplate = backgroundColor.replace("rgb", "rgba").substring(0, backgroundColor.length) + ", ";
 
 
