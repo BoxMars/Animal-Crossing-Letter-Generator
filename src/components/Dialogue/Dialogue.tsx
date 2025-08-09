@@ -47,6 +47,9 @@ export function Dialogue({ name, message }: { name: string; message: string }) {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+
+    // Handle resize after small delay for mobile devices
+    setTimeout(handleResize, 100);
     return () => {
       window.removeEventListener("resize", handleResize);
     };

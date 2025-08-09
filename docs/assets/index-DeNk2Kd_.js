@@ -14238,6 +14238,7 @@ function Dialogue({ name, message }) {
     };
     handleResize();
     window.addEventListener("resize", handleResize);
+    setTimeout(handleResize, 100);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -23124,4 +23125,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-CTFaqvAj.js.map
+//# sourceMappingURL=index-DeNk2Kd_.js.map
