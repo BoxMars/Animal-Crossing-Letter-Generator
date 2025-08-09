@@ -22942,7 +22942,7 @@ function EditorPage({ shareMode = false }) {
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
 }
-const bottles = [{ "time": 0, "card": "Shooting-Stars", "start": "Dear Villager,", "message": "Hello, World!", "signature": "From Tom Nook" }];
+const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }];
 const bottlesData = {
   bottles
 };
@@ -23023,4 +23023,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DpUq2Vz4.js.map
+//# sourceMappingURL=index-Dj7OoirI.js.map

@@ -1,11 +1,11 @@
 {
   "bottles": [
     {
-      "time": 0,
+      "time": 1754758702790,
       "card": "Shooting-Stars",
-      "start": "Dear Villager,",
-      "message": "Hello, World!",
-      "signature": "From Tom Nook"
+      "start": "Dear Stranger,",
+      "message": "Everything is going to be okay",
+      "signature": "From Another Stranger"
     }
   ]
 }
