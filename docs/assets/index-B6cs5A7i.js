@@ -22792,21 +22792,33 @@ const API_URL = "https://qtdnsrzb09.execute-api.us-east-1.amazonaws.com/bottle";
 function saveImage(cardElement, callback) {
   console.log("Saving image...");
   const cardScale = parseFloat(getComputedStyle(cardElement).getPropertyValue("--card-scale") ?? 1);
-  html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then((canvas) => {
-    canvas.toBlob((blob) => {
-      if (blob) {
-        const item = new ClipboardItem({ "image/png": blob });
-        navigator.clipboard.write([item]).then(() => {
-          console.log("Image copied to clipboard");
-        }).catch((err) => {
-          console.error("Failed to copy image to clipboard", err);
-        });
+  html2canvas(cardElement, { scale: 1 / cardScale, backgroundColor: null }).then(async (canvas) => {
+    const pngBlob = await new Promise(
+      (resolve) => canvas.toBlob((b) => resolve(b), "image/png")
+    );
+    const file = new File([pngBlob], "animal-crossing-card.png", { type: "image/png" });
+    const canShareFile = typeof navigator !== "undefined" && "canShare" in navigator && navigator.canShare?.({ files: [file] });
+    const isIOS = /iP(ad|hone|od)/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+    const isAndroid = /Android/.test(navigator.userAgent);
+    if ((isIOS || isAndroid) && "share" in navigator && canShareFile) {
+      console.log("Sharing via mobile share API");
+      await navigator.share({
+        files: [file]
+      });
+      console.log("Shared via mobile share API");
+    } else {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+        console.log("Image copied to clipboard");
+      } catch (err) {
+        console.error("Failed to copy image to clipboard", err);
       }
-    });
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = `animal-crossing-card.png`;
-    link.click();
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = `animal-crossing-card.png`;
+      link.click();
+      console.log("Image saved successfully");
+    }
     if (callback) {
       callback(true);
     }
@@ -23009,4 +23021,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DcWmUGSu.js.map
+//# sourceMappingURL=index-B6cs5A7i.js.map
