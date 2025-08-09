@@ -22844,6 +22844,7 @@ function shareBottle(cardType, startText, messageText, signatureText) {
   const content2 = `\`\`\`json
 {
   "time": ${time2},
+  "card": "${cardType}",
   "start": "${startText}",
   "message": "${messageText}",
   "signature": "${signatureText}"
@@ -23022,4 +23023,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DCsi7leJ.js.map
+//# sourceMappingURL=index-DpUq2Vz4.js.map
