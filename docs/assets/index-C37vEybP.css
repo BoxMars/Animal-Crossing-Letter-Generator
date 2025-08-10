@@ -762,11 +762,9 @@
 		min-width: 150px;
 		margin-bottom: 10px;
 	}
-}
 
-@media screen and (max-width: 700px) and (orientation: portrait) {
 	.card-zoomable:hover {
-		transform: none;
+		transform: none !important;
 	}
 }@font-face {
   font-family: "Seurat Pro B";
@@ -888,6 +886,7 @@ html {
 	position: absolute;
   top: -30px;
   left: 50%;
+  transform: scales(var(--bottle-scale));
   transform: translate(-50%, -50%);
   width: 160px;
   text-align: center;
@@ -910,5 +909,6 @@ html {
 @media screen and (max-width: 700px) and (orientation: portrait) {
   .bottle {
     --bottle-scale: 0.6;
+    right: 10px;
   }
 }
