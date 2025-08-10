@@ -90,7 +90,11 @@ function shareBottle(cardType: CardName, startText: string, messageText: string,
   });
 }
 
-export default function Editor({ cardType, shareMode: shareMode = false, startText, messageText, signatureText }: { cardType: CardName, shareMode?: boolean, startText?: string, messageText?: string, signatureText?: string }) {
+const DEFAULT_START_TEXT = "Dear Villager,";
+const DEFAULT_MESSAGE_TEXT = "Welcome to the letter editor! Click any text to edit and start typing up a letter! Once you're done, use the buttons below to share with your friends!";
+const DEFAULT_SIGNATURE_TEXT = "From Your Friend";
+
+export default function Editor({ cardType, shareMode: shareMode = false, startText = DEFAULT_START_TEXT, messageText = DEFAULT_MESSAGE_TEXT, signatureText = DEFAULT_SIGNATURE_TEXT }: { cardType: CardName, shareMode?: boolean, startText?: string, messageText?: string, signatureText?: string }) {
   const LABEL_DELAY = 1500;
   const SAVE_LABEL = "Save Image";
   const LINK_LABEL = "Copy Link";
@@ -148,8 +152,12 @@ export default function Editor({ cardType, shareMode: shareMode = false, startTe
                 const startText = cardElement.querySelector(".card-start")?.textContent ?? "";
                 const messageText = cardElement.querySelector(".card-message")?.textContent ?? "";
                 const signatureText = cardElement.querySelector(".card-signature")?.textContent ?? "";
-                shareBottle(cardType, startText, messageText, signatureText);
-                navigate("/sent-bottle");
+                if (DEFAULT_START_TEXT === startText && DEFAULT_MESSAGE_TEXT === messageText && DEFAULT_SIGNATURE_TEXT === signatureText) {
+                  console.warn("Default text detected, not sharing bottle");
+                } else {
+                  shareBottle(cardType, startText, messageText, signatureText);
+                }
+                  navigate("/sent-bottle");
               }
             }
           }} />

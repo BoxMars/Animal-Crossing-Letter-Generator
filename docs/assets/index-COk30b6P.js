@@ -14530,9 +14530,6 @@ function Card({
       });
     }
     if (messageRef.current) {
-      if (editable) {
-        messageRef.current.focus();
-      }
       messageRef.current.addEventListener("input", () => {
         setMessageText(messageRef.current?.textContent || messageDisplayText);
       });
@@ -22971,7 +22968,10 @@ ${link}`;
     console.error("Error sharing bottle", err);
   });
 }
-function Editor({ cardType, shareMode = false, startText, messageText, signatureText }) {
+const DEFAULT_START_TEXT = "Dear Villager,";
+const DEFAULT_MESSAGE_TEXT = "Welcome to the letter editor! Click any text to edit and start typing up a letter! Once you're done, use the buttons below to share with your friends!";
+const DEFAULT_SIGNATURE_TEXT = "From Your Friend";
+function Editor({ cardType, shareMode = false, startText = DEFAULT_START_TEXT, messageText = DEFAULT_MESSAGE_TEXT, signatureText = DEFAULT_SIGNATURE_TEXT }) {
   const LABEL_DELAY = 1500;
   const SAVE_LABEL = "Save Image";
   const LINK_LABEL = "Copy Link";
@@ -23020,7 +23020,11 @@ function Editor({ cardType, shareMode = false, startText, messageText, signature
             const startText2 = cardElement.querySelector(".card-start")?.textContent ?? "";
             const messageText2 = cardElement.querySelector(".card-message")?.textContent ?? "";
             const signatureText2 = cardElement.querySelector(".card-signature")?.textContent ?? "";
-            shareBottle(cardType, startText2, messageText2, signatureText2);
+            if (DEFAULT_START_TEXT === startText2 && DEFAULT_MESSAGE_TEXT === messageText2 && DEFAULT_SIGNATURE_TEXT === signatureText2) {
+              console.warn("Default text detected, not sharing bottle");
+            } else {
+              shareBottle(cardType, startText2, messageText2, signatureText2);
+            }
             navigate("/sent-bottle");
           }
         }
@@ -23125,4 +23129,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DeNk2Kd_.js.map
+//# sourceMappingURL=index-COk30b6P.js.map

@@ -50,9 +50,6 @@ export default function Card({
       });
     }
     if (messageRef.current) {
-      if (editable) {
-        messageRef.current.focus();
-      }
       messageRef.current.addEventListener("input", () => {
         setMessageText(messageRef.current?.textContent || messageDisplayText);
       });
