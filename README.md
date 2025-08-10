@@ -8,7 +8,7 @@
 ## [`Check it out here!`](https://acmail.idreesinc.com)
 <br/>
 
-![](images/preview.png)
+![https://acmail.idreesinc.com](images/preview.png)
 
 A pixel-perfect editor for creating the letters from Animal Crossing New Horizons!
 
