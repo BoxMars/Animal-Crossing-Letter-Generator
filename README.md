@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+# Animal Crossing Letter Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](https://img.shields.io/github/license/IdreesInc/Animal-Crossing-Letter-Generator)
+<a href="https://discord.gg/6yxE9prcNc" target="_blank">
+	<img alt="Discord" src="https://img.shields.io/discord/1398471368403583120?logo=discord&logoColor=fff&label=discord&color=5865F2">
+</a>
 
-Currently, two official plugins are available:
+## [`Check it out here!`](https://acmail.idreesinc.com)
+<br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![](images/preview.png)
 
-## Expanding the ESLint configuration
+A pixel-perfect editor for creating the letters from Animal Crossing New Horizons!
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*Notice: This project is not affiliated with Animal Crossing or Nintendo in any way and is exclusively a fan project. The open source license does not apply to the names, assets, fonts, or characters used in this project.*
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Choose from 30+ different stationary designs, including seasonal cards
+  - I've carefully recreated every single card from the game, including the seasonal ones!
+- Perfectly replicates the in-game letter editor
+  - Fonts, colors, aspect ratios and layouts are all accurate to Animal Crossing New Horizons
+- Edit text directly on the card with a live preview
+  - What you see is what you get!
+- Download your letter as a high quality image or share directly via link
+  - Share your letter with friends or even with the world using the "Share in a Bottle" feature!
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### [`Share your creations and beta test via the Discord!`](https://discord.gg/6yxE9prcNc)

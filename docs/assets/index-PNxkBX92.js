@@ -14603,7 +14603,15 @@ function CardSelection() {
 function Footer() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("footer", { className: "footer", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", style: { textAlign: "left" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/privacy-policy", children: "Privacy Policy" }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", children: "Made with ❤️ by Idrees" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "footer-text", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "a",
+      {
+        href: "https://discord.gg/6yxE9prcNc",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        children: "Made with ❤️ by Idrees"
+      }
+    ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "footer-text", style: { textAlign: "right" }, children: [
       "Animal Crossing, characters, and images are property of Nintendo.",
       /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
@@ -23129,4 +23137,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DHXy3NJX.js.map
+//# sourceMappingURL=index-PNxkBX92.js.map

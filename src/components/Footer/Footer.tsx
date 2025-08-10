@@ -8,7 +8,13 @@ export default function Footer() {
         <Link to="/privacy-policy">Privacy Policy</Link>
       </div>
       <div className="footer-text">
-        Made with ❤️ by Idrees
+        <a
+          href="https://discord.gg/6yxE9prcNc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Made with ❤️ by Idrees
+        </a>
       </div>
       <div className="footer-text" style={{ textAlign: "right" }}>
         Animal Crossing, characters, and images are property of Nintendo.
