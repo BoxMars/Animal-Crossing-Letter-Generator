@@ -24,5 +24,7 @@ A pixel-perfect editor for creating the letters from Animal Crossing New Horizon
   - What you see is what you get!
 - Download your letter as a high quality image or share directly via link
   - Share your letter with friends or even with the world using the "Share in a Bottle" feature!
+ 
+---
 
 ### [`Share your creations and beta test via the Discord!`](https://discord.gg/6yxE9prcNc)
