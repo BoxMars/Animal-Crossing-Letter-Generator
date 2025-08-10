@@ -9,8 +9,8 @@
   transition: bottom 0.75s ease-in-out;
 }
 
-.waves-container:hover > .bottle {
-  filter: drop-shadow(0 0 5px white);
+.waves-container:hover > .bottle > .bottle-label {
+  opacity: 1;
 }
 
 .waves {

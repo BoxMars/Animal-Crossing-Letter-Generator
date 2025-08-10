@@ -9,6 +9,8 @@ export default function Bottle({ visible = true }: { visible?: boolean }) {
   };
 
   return (
-    <div className={`bottle ${!visible ? "bottle-hide" : ""}`} onClick={handleClick}></div>
+    <div className={`bottle ${!visible ? "bottle-hide" : ""}`} onClick={handleClick}>
+      <div className="bottle-label">Click me!</div>
+    </div>
   )
 }

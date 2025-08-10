@@ -23130,7 +23130,7 @@ function Bottle({ visible = true }) {
   const handleClick = () => {
     navigate("/found-bottle");
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: handleClick });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `bottle ${!visible ? "bottle-hide" : ""}`, onClick: handleClick, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bottle-label", children: "Click me!" }) });
 }
 function Waves({ type = "front" }) {
   const location = useLocation();
@@ -23165,4 +23165,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DpIZ5Wja.js.map
+//# sourceMappingURL=index-BMYoizJk.js.map
