@@ -1,3 +1,4 @@
+import PageTitle from "../components/PageTitle/PageTitle";
 import { DialogueOverlay } from "../components/Dialogue/Dialogue";
 import bottlesData from "../bottles.json";
 import { generateLinkPage } from "../components/Editor/editorFunctions";
@@ -22,10 +23,13 @@ function getRandomBottle() {
 
 export default function FoundBottle() {
   return (
-    <DialogueOverlay
-      name="Tom Nook"
-      message="Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!"
-      linkTo={getRandomBottle()}
-    />
+    <>
+      <PageTitle title="Found Message in a Bottle!" />
+      <DialogueOverlay
+        name="Tom Nook"
+        message="Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!"
+        linkTo={getRandomBottle()}
+      />
+    </>
   );
 }

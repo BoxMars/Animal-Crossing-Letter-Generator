@@ -14201,6 +14201,12 @@ function useViewTransitionState(to, { relative } = {}) {
   let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
+function PageTitle({ title = "Animal Crossing Letter Editor" }) {
+  reactExports.useEffect(() => {
+    document.title = title;
+  }, [title]);
+  return null;
+}
 function DialogueOverlay({ name, message, linkTo }) {
   const navigate = useNavigate();
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "dialogue-page", onClick: () => {
@@ -14261,14 +14267,17 @@ function Dialogue({ name, message }) {
   ] });
 }
 function Introduction() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    DialogueOverlay,
-    {
-      name: "Tom Nook",
-      message: "Welcome to the stationary station, for all of your letter writing needs! Pick a letter template to get started.",
-      linkTo: "/library"
-    }
-  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title: "Animal Crossing Letter Generator" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogueOverlay,
+      {
+        name: "Tom Nook",
+        message: "Welcome to the stationary station, for all of your letter writing needs! Pick a letter template to get started.",
+        linkTo: "/library"
+      }
+    )
+  ] });
 }
 const CardName = {
   Airmail: "Airmail",
@@ -14620,9 +14629,12 @@ function Footer() {
   ] });
 }
 function Library() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { paddingTop: "30px" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title: "Animal Crossing Letter Selection" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { paddingTop: "30px" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardSelection, {}),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+    ] })
   ] });
 }
 function Button({ label, onClick }) {
@@ -23054,7 +23066,14 @@ function EditorPage({ shareMode = false }) {
   const startText = params.get("start") ? decode$2(params.get("start")) : void 0;
   const messageText = params.get("message") ? decode$2(params.get("message")) : void 0;
   const signatureText = params.get("signature") ? decode$2(params.get("signature")) : void 0;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode });
+  let title = `Letter Editor - ${cardType}`;
+  if (shareMode) {
+    title = `Shared Letter - ${signatureText}`;
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode })
+  ] });
 }
 const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }];
 const bottlesData = {
@@ -23067,34 +23086,43 @@ function getRandomBottle() {
   return linkTo;
 }
 function FoundBottle() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    DialogueOverlay,
-    {
-      name: "Tom Nook",
-      message: "Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!",
-      linkTo: getRandomBottle()
-    }
-  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title: "Found Message in a Bottle!" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogueOverlay,
+      {
+        name: "Tom Nook",
+        message: "Looks like a message in a bottle washed ashore, shared by a random stranger across the world! Let's open it up!",
+        linkTo: getRandomBottle()
+      }
+    )
+  ] });
 }
 function SentBottle() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    DialogueOverlay,
-    {
-      name: "Tom Nook",
-      message: "Your bottle has been sent away! Hopefully it will reach someone special across the world!",
-      linkTo: "/library"
-    }
-  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title: "Sent Message in a Bottle!" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogueOverlay,
+      {
+        name: "Tom Nook",
+        message: "Your bottle has been sent away! Hopefully it will reach someone special across the world!",
+        linkTo: "/library"
+      }
+    )
+  ] });
 }
 function PrivacyPolicy() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "20px", fontFamily: "Arial, sans-serif" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Privacy Policy" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: 'acmail.idreesinc.com (and its related aliases) includes external scripts from Disqus (to enable comments), Microsoft Clarity, and Google Analytics (to monitor users who visit the site). These services use cookies and other methods to track users, though I do not provide any personally identifying information beyond what the services obtain by default. If you wish to opt out of this tracking, enable "Do Not Track" on your browser for Disqus and you can use this extension for Google Analytics. Even better, I would highly recommend installing uBlock Origin to not just prevent tracking on my website but also to prevent even more invasive tracking and advertisements on other websites.' }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "If you wish for me to delete the personally identifying information recorded by the services used on my website, please email me (Idrees Hassan) and I will use the respective service's GDPR tools." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "acmail.idreesinc.com is not affiliated with or endorsed by Nintendo. Animal Crossing, characters, and images are property of Nintendo." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Any letters shared via link, through the bottle sharing feature, or any other sharing feature are provided with explicit consent from the user for acmail.idreesinc.com and administrators to use, modify, and distribute the letters. You are responsible for not including any personally identifying information in your letters." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Letters created and edited include any information you provide, such as your username, letter content, and any other metadata associated with the letter." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "By using this website, you consent to the collection and use of your information as outlined in this Privacy Policy." })
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PageTitle, { title: "Privacy Policy" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "20px", fontFamily: "Arial, sans-serif" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Privacy Policy" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: 'acmail.idreesinc.com (and its related aliases) includes external scripts from Disqus (to enable comments), Microsoft Clarity, and Google Analytics (to monitor users who visit the site). These services use cookies and other methods to track users, though I do not provide any personally identifying information beyond what the services obtain by default. If you wish to opt out of this tracking, enable "Do Not Track" on your browser for Disqus and you can use this extension for Google Analytics. Even better, I would highly recommend installing uBlock Origin to not just prevent tracking on my website but also to prevent even more invasive tracking and advertisements on other websites.' }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "If you wish for me to delete the personally identifying information recorded by the services used on my website, please email me (Idrees Hassan) and I will use the respective service's GDPR tools." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "acmail.idreesinc.com is not affiliated with or endorsed by Nintendo. Animal Crossing, characters, and images are property of Nintendo." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Any letters shared via link, through the bottle sharing feature, or any other sharing feature are provided with explicit consent from the user for acmail.idreesinc.com and administrators to use, modify, and distribute the letters. You are responsible for not including any personally identifying information in your letters." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Letters created and edited include any information you provide, such as your username, letter content, and any other metadata associated with the letter." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "By using this website, you consent to the collection and use of your information as outlined in this Privacy Policy." })
+    ] })
   ] });
 }
 function Bottle({ visible = true }) {
@@ -23137,4 +23165,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-PNxkBX92.js.map
+//# sourceMappingURL=index-DpIZ5Wja.js.map

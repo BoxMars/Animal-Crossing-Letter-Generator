@@ -1,13 +1,8 @@
 import { useSearchParams } from "react-router";
+import PageTitle from "../components/PageTitle/PageTitle";
 import Editor from "../components/Editor/Editor";
 import { decode } from "../components/Editor/editorFunctions";
 import { CardName } from "../components/Card/cardConstants";
-
-// export function meta({ }: Route.MetaArgs) {
-//   return [
-//     { title: "Animal Crossing Letter Editor" },
-//   ];
-// }
 
 export default function EditorPage({ shareMode = false } : { shareMode?: boolean }) {
   const [params] = useSearchParams();
@@ -23,7 +18,15 @@ export default function EditorPage({ shareMode = false } : { shareMode?: boolean
   const startText = params.get("start") ? decode(params.get("start")!) : undefined;
   const messageText = params.get("message") ? decode(params.get("message")!) : undefined;
   const signatureText = params.get("signature") ? decode(params.get("signature")!) : undefined;
+  
+  let title = `Letter Editor - ${cardType}`;
+  if (shareMode) {
+    title = `Shared Letter - ${signatureText}`;
+  }
   return (
-    <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText} shareMode={shareMode} />
+    <>
+      <PageTitle title={title} />
+      <Editor cardType={cardType} startText={startText} messageText={messageText} signatureText={signatureText} shareMode={shareMode} />
+    </>
   );
 }
