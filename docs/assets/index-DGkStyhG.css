@@ -325,6 +325,7 @@
 	overflow-wrap: break-word;
 	max-height: 6lh;
 	overflow: scroll;
+	scrollbar-width: none;
 }
 
 .card-signature {

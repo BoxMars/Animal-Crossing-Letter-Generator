@@ -23075,7 +23075,7 @@ function EditorPage({ shareMode = false }) {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode })
   ] });
 }
-const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }];
+const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }, { "time": 1754919935403, "card": "Balloons", "start": "Dear Stranger, ", "message": "Just wanted to let you know that for a few weeks now I have been healing, and I sincerely hope you will get to heal too, or anything else that you may need. Life can be great too.", "signature": "Your French Friend" }, { "time": 1754920316429, "card": "Goldfish", "start": "Dear Villager,", "message": "Hello villager- life is hard but you are brave! We’ll get through this together!", "signature": "From Your Friend" }, { "time": 1754920367982, "card": "Fluffy-Clouds", "start": "Whoever is reading this,", "message": "Can you find something to be grateful today? Whether it's upcoming or it already happened, anything nice no matter how small. This evening the spaghetti I made turned out really tasty!", "signature": "From a stranger" }];
 const bottlesData = {
   bottles
 };
@@ -23165,4 +23165,4 @@ ReactDOM.createRoot(root).render(
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-C_QUDmKW.js.map
+//# sourceMappingURL=index-DSvIy8Lw.js.map
