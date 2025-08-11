@@ -57,67 +57,116 @@
       "signature": "- Mercury"
     },
     {
-  "time": 1754926273621,
-  "card": "Blue-Sky",
-  "start": "Dear Villager,",
-  "message": "Don't just sit there and waste your precious time. When you want to do something, do it right away. Do it when you can. It's the only way to live a life without regrets. ",
-  "signature": "From Your Friend"
-},
-{
-  "time": 1754926613368,
-  "card": "Hibiscus",
-  "start": "Dear Stranger,",
-  "message": "Whatever you are going to do:Don't be afraid! You got this!I believe in you! ♥️",
-  "signature": "From a Friend"
-},
-{
-  "time": 1754928204595,
-  "card": "Shooting-Stars",
-  "start": "Dear Villager,",
-  "message": "I hope you have a nice day!",
-  "signature": "From Your Friend"
-},
-{
-  "time": 1754928436481,
-  "card": "Zen",
-  "start": "Dear Mother,",
-  "message": "I am hungry.",
-  "signature": "From Your Daughter"
-},
-{
-  "time": 1754928947971,
-  "card": "Shooting-Stars",
-  "start": "To a distant star",
-  "message": "Sometimes, I gaze upon the night sky, with you on my mind. I breath the breeze as clouds fly, and wish to leave it all behind. But where do I go if not to you... Do you often think of me too?",
-  "signature": "From a distant dreamer ♥"
-},
-{
-  "time": 1754929271889,
-  "card": "Gem",
-  "start": "To a precious pearl,",
-  "message": "You're a treasure, it's true! Amidst the deep dark blue. You're a gem, one of its kind, a beautiful rare find. You are greatness born from pain, an oyster's sweet refrain! Life is your oyster!",
-  "signature": "From an iridescent opal"
-},
-{
-  "time": 1754929476492,
-  "card": "Fireworks",
-  "start": "A beautiful stranger",
-  "message": "Fireworks are one of my favorite things in life. We only see them here on New Year's and they never fail to amaze me. They remind me of being a child filled with wonder and my heart fills with happiness ♥",
-  "signature": "A quiet soul"
-},
-{
-  "time": 1754929653737,
-  "card": "Elegant-Roses",
-  "start": "To a stranger,",
-  "message": "If you're depressed, having something to look forward to can help! It can be a meal you're going to make, having a get-together with friends, or even watching a movie with popcorn. ",
-  "signature": "Let's get through this together! -Wolf"
-},
-{
-  "time": 1754929659421,
-  "card": "Stationary-Goods",
-  "start": "Dear friend,",
-  "message": "I like cheese. Cheese is nice. Mozzarella is good. Feta is good. Cheddar is the BEST. Kirkland cheddar? On TOP. 10/10 BEST cheddar. You should try it.",
-  "signature": "Happy cheese tasting, from Your Friend"
-}
+      "time": 1754926273621,
+      "card": "Blue-Sky",
+      "start": "Dear Villager,",
+      "message": "Don't just sit there and waste your precious time. When you want to do something, do it right away. Do it when you can. It's the only way to live a life without regrets. ",
+      "signature": "From Your Friend"
+    },
+    {
+      "time": 1754926613368,
+      "card": "Hibiscus",
+      "start": "Dear Stranger,",
+      "message": "Whatever you are going to do:Don't be afraid! You got this!I believe in you! ♥️",
+      "signature": "From a Friend"
+    },
+    {
+      "time": 1754928204595,
+      "card": "Shooting-Stars",
+      "start": "Dear Villager,",
+      "message": "I hope you have a nice day!",
+      "signature": "From Your Friend"
+    },
+    {
+      "time": 1754928436481,
+      "card": "Zen",
+      "start": "Dear Mother,",
+      "message": "I am hungry.",
+      "signature": "From Your Daughter"
+    },
+    {
+      "time": 1754928947971,
+      "card": "Shooting-Stars",
+      "start": "To a distant star",
+      "message": "Sometimes, I gaze upon the night sky, with you on my mind. I breath the breeze as clouds fly, and wish to leave it all behind. But where do I go if not to you... Do you often think of me too?",
+      "signature": "From a distant dreamer ♥"
+    },
+    {
+      "time": 1754929271889,
+      "card": "Gem",
+      "start": "To a precious pearl,",
+      "message": "You're a treasure, it's true! Amidst the deep dark blue. You're a gem, one of its kind, a beautiful rare find. You are greatness born from pain, an oyster's sweet refrain! Life is your oyster!",
+      "signature": "From an iridescent opal"
+    },
+    {
+      "time": 1754929476492,
+      "card": "Fireworks",
+      "start": "A beautiful stranger",
+      "message": "Fireworks are one of my favorite things in life. We only see them here on New Year's and they never fail to amaze me. They remind me of being a child filled with wonder and my heart fills with happiness ♥",
+      "signature": "A quiet soul"
+    },
+    {
+      "time": 1754929653737,
+      "card": "Elegant-Roses",
+      "start": "To a stranger,",
+      "message": "If you're depressed, having something to look forward to can help! It can be a meal you're going to make, having a get-together with friends, or even watching a movie with popcorn. ",
+      "signature": "Let's get through this together! -Wolf"
+    },
+    {
+      "time": 1754929659421,
+      "card": "Stationary-Goods",
+      "start": "Dear friend,",
+      "message": "I like cheese. Cheese is nice. Mozzarella is good. Feta is good. Cheddar is the BEST. Kirkland cheddar? On TOP. 10/10 BEST cheddar. You should try it.",
+      "signature": "Happy cheese tasting, from Your Friend"
+    },
+    {
+      "time": 1754931725894,
+      "card": "Bandage",
+      "start": "Dear Villager,",
+      "message": "Hiiiiiiiiiii",
+      "signature": "From Your Friend"
+    },
+    {
+      "time": 1754931788836,
+      "card": "Flower-Bouquet",
+      "start": "Dear Villager,",
+      "message": "You are loved.",
+      "signature": "From Your Friend"
+    },
+    {
+      "time": 1754931856794,
+      "card": "Bandage",
+      "start": "Dear Villager,",
+      "message": "Don't give up! :>",
+      "signature": "From a Chicago Friend"
+    },
+    {
+      "time": 1754932577459,
+      "card": "Shooting-Stars",
+      "start": "Dear unknown person,",
+      "message": "I wish you luck because life ain't easy and I absolutely wish you to be kind and have a good heart for that’s how true life is meant to be experienced.",
+      "signature": "Someone. "
+    },
+    {
+      "time": 1754932907392,
+      "card": "Cool-Cool",
+      "start": "Hey you,",
+      "message": "Oh, so we all depressed, huh. What a crazy place to find ourselves.\nI don't have any words of wisdom.\nJust know we're all here together.",
+      "signature": "GG gamer, Jae"
+    },
+    {
+      "time": 1754933075717,
+      "card": "Beach",
+      "start": "Dear Villager,",
+      "message": "Remember to take life a step at a time and cherish the moments you get. And drink water!! ",
+      "signature": "From Your Friend"
+    },
+    {
+      "time": 1754933855078,
+      "card": "Happy-Clovers",
+      "start": "Dear Villager,",
+      "message": "Life sucks and I doubt my personal decisions every day. But today is sunny and I had nice food and I ran into a friend. Let's hang in there a little longer!",
+      "signature": "From Your Friend"
+    }
   ]
 }
