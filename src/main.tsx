@@ -8,6 +8,7 @@ import SentBottle from "./routes/sent-bottle";
 import PrivacyPolicy from "./routes/privacy-policy";
 import "./main.css";
 import Waves from "./components/Waves/Waves";
+import Redirect from "./routes/redirect";
 
 const root = document.getElementById("root");
 
@@ -22,6 +23,7 @@ ReactDOM.createRoot(root!).render(
       <Route path="found-bottle" element={<FoundBottle />} />
       <Route path="sent-bottle" element={<SentBottle />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="community" element={<Redirect to="https://discord.gg/6yxE9prcNc" />} />
     </Routes>
     <Waves type="front"/>
   </HashRouter>

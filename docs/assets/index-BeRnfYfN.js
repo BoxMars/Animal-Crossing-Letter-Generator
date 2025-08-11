@@ -23075,7 +23075,7 @@ function EditorPage({ shareMode = false }) {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Editor, { cardType, startText, messageText, signatureText, shareMode })
   ] });
 }
-const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }, { "time": 1754919935403, "card": "Balloons", "start": "Dear Stranger, ", "message": "Just wanted to let you know that for a few weeks now I have been healing, and I sincerely hope you will get to heal too, or anything else that you may need. Life can be great too.", "signature": "Your French Friend" }, { "time": 1754920316429, "card": "Goldfish", "start": "Dear Villager,", "message": "Hello villager- life is hard but you are brave! We’ll get through this together!", "signature": "From Your Friend" }, { "time": 1754920367982, "card": "Fluffy-Clouds", "start": "Whoever is reading this,", "message": "Can you find something to be grateful today? Whether it's upcoming or it already happened, anything nice no matter how small. This evening the spaghetti I made turned out really tasty!", "signature": "From a stranger" }];
+const bottles = [{ "time": 1754758702790, "card": "Shooting-Stars", "start": "Dear Stranger,", "message": "Everything is going to be okay", "signature": "From Another Stranger" }, { "time": 1754919935403, "card": "Balloons", "start": "Dear Stranger, ", "message": "Just wanted to let you know that for a few weeks now I have been healing, and I sincerely hope you will get to heal too, or anything else that you may need. Life can be great too.", "signature": "Your French Friend" }, { "time": 1754920316429, "card": "Goldfish", "start": "Dear Villager,", "message": "Hello villager- life is hard but you are brave! We’ll get through this together!", "signature": "From Your Friend" }, { "time": 1754920367982, "card": "Fluffy-Clouds", "start": "Whoever is reading this,", "message": "Can you find something to be grateful today? Whether it's upcoming or it already happened, anything nice no matter how small. This evening the spaghetti I made turned out really tasty!", "signature": "From a stranger" }, { "time": 1754920770335, "card": "Torn", "start": "dear traveler...", "message": "even if all seems dark, dont give up! it does get easier with time", "signature": "a fellow struggler" }, { "time": 1754923004327, "card": "Shooting-Stars", "start": "Dear random person,", "message": "Just here to let you know that there's people out there that love and appreciate you and when you feel like that's not the case, they are yet to appear in your life - so stay strong! Also, go to the gym :P", "signature": "From someone in Austria" }, { "time": 1754925364255, "card": "Fantasy-Stars", "start": "Dear Stranger,", "message": "To everyone who is sick right now, like me, wether it‘s physical or mental, stay strong!! I love you!! Enjoy your time and well deserved rest on your Island! Get better soon <333", "signature": "From Lily :>" }, { "time": 1754925892469, "card": "Fanciful", "start": "Dear adventurer,", "message": "Life's gonna keep throwing challenges at you. While it may be harsh, the world was not made for those like us and maybe that'sokay. Always keep fighting for whoyou want to be <3", "signature": "- Mercury" }];
 const bottlesData = {
   bottles
 };
@@ -23149,6 +23149,12 @@ function Waves({ type = "front" }) {
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `waves ${type}-waves ${waveHeight === "gone" ? " waves-hide" : ""} ${waveHeight === "high" ? "waves-flood" : ""}` })
   ] });
 }
+function Redirect({ to }) {
+  reactExports.useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {});
+}
 const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   /* @__PURE__ */ jsxRuntimeExports.jsxs(HashRouter, { children: [
@@ -23160,9 +23166,10 @@ ReactDOM.createRoot(root).render(
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "share", element: /* @__PURE__ */ jsxRuntimeExports.jsx(EditorPage, { shareMode: true }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "found-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FoundBottle, {}) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "sent-bottle", element: /* @__PURE__ */ jsxRuntimeExports.jsx(SentBottle, {}) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "privacy-policy", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivacyPolicy, {}) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "privacy-policy", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivacyPolicy, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "community", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Redirect, { to: "https://discord.gg/6yxE9prcNc" }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Waves, { type: "front" })
   ] })
 );
-//# sourceMappingURL=index-DSvIy8Lw.js.map
+//# sourceMappingURL=index-BeRnfYfN.js.map
