@@ -878,7 +878,7 @@ html {
     filter: drop-shadow(0 0 2px white);
   }
   50% {
-    margin-bottom: 50px;
+    margin-bottom: 52px;
     transform: scale(var(--bottle-scale)) rotate(14deg) translateX(-50%);
     filter: drop-shadow(0 0 10px white);
   }
